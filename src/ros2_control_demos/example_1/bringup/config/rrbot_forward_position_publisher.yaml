@@ -1,7 +1,7 @@
 publisher_forward_position_controller:
   ros__parameters:
 
-    wait_sec_between_publish: 5
+    wait_sec_between_publish: 3
     publish_topic: "/forward_position_controller/commands"
 
     goal_names: ["pos1", "pos2", "pos3", "pos4"]
