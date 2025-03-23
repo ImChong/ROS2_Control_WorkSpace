@@ -36,7 +36,7 @@ Visualization Manager:
       Cell Size: 1
       Class: rviz_default_plugins/Grid
       Color: 160; 160; 164
-      Enabled: false
+      Enabled: true
       Line Style:
         Line Width: 0.029999999329447746
         Value: Lines
@@ -49,7 +49,7 @@ Visualization Manager:
       Plane: XY
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
-      Value: false
+      Value: true
     - Class: rviz_default_plugins/TF
       Enabled: true
       Frame Timeout: 15
@@ -75,11 +75,11 @@ Visualization Manager:
           Value: true
         world:
           Value: true
-      Marker Scale: 1
+      Marker Scale: 0.5
       Name: TF
       Show Arrows: false
       Show Axes: true
-      Show Names: false
+      Show Names: true
       Tree:
         world:
           base_link:
@@ -169,7 +169,7 @@ Visualization Manager:
       Visual Enabled: true
   Enabled: true
   Global Options:
-    Background Color: 255; 255; 255
+    Background Color: 119; 118; 123
     Fixed Frame: base_link
     Frame Rate: 30
   Name: root
@@ -228,10 +228,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.17479799687862396
+      Pitch: 0.25479814410209656
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.8921666145324707
+      Yaw: 0.9821665287017822
     Saved: ~
 Window Geometry:
   Displays:
