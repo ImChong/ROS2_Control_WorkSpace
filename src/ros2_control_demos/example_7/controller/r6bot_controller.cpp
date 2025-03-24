@@ -22,6 +22,7 @@
 
 #include "rclcpp/qos.hpp"
 #include "rclcpp/time.hpp"
+#include "rclcpp/rclcpp.hpp"
 #include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 #include "rclcpp_lifecycle/state.hpp"
 
@@ -60,6 +61,13 @@ controller_interface::InterfaceConfiguration RobotController::command_interface_
     }
   }
 
+  std::string names_str = "";
+  for (const auto & name : conf.names) {
+    if (!names_str.empty()) names_str += ", ";
+    names_str += name;
+  }
+  RCLCPP_INFO(rclcpp::get_logger("r6bot_controller"), "command interface configuration: %s", names_str.c_str());
+
   return conf;
 }
 
@@ -75,6 +83,13 @@ controller_interface::InterfaceConfiguration RobotController::state_interface_co
       conf.names.push_back(joint_name + "/" + interface_type);
     }
   }
+
+  std::string names_str = "";
+  for (const auto & name : conf.names) {
+    if (!names_str.empty()) names_str += ", ";
+    names_str += name;
+  }
+  RCLCPP_INFO(rclcpp::get_logger("r6bot_controller"), "state interface configuration: %s", names_str.c_str());
 
   return conf;
 }
