@@ -52,6 +52,8 @@ int main(int argc, char * argv[])
   commands.data[0] = 0;
   publisher->publish(commands);
   std::this_thread::sleep_for(1s);
+
+  node.reset();
   rclcpp::shutdown();
 
   return 0;
