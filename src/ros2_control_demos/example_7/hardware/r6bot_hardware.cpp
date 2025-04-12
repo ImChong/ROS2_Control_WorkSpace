@@ -15,6 +15,7 @@
 #include "ros2_control_demo_example_7/r6bot_hardware.hpp"
 #include <string>
 #include <vector>
+#include <rclcpp/rclcpp.hpp>
 
 namespace ros2_control_demo_example_7
 {
@@ -39,6 +40,7 @@ CallbackReturn RobotSystem::on_init(const hardware_interface::HardwareInfo & inf
   {
     for (const auto & interface : joint.state_interfaces)
     {
+      RCLCPP_INFO(rclcpp::get_logger("r6bot_hardware"), "joint %s has interface %s", joint.name.c_str(), interface.name.c_str());
       joint_interfaces[interface.name].push_back(joint.name);
     }
   }
