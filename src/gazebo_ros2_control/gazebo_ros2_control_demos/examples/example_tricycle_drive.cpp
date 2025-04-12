@@ -47,6 +47,8 @@ int main(int argc, char * argv[])
     std::this_thread::sleep_for(50ms);
     rclcpp::spin_some(node);
   }
+
+  node.reset();
   rclcpp::shutdown();
 
   return 0;
