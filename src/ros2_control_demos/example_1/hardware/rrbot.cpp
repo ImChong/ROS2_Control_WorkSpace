@@ -73,8 +73,6 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_init(
     }
   }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
   // BEGIN: This part here is for exemplary purposes - Please do not copy to your production code
   hw_start_sec_ = stod(info_.hardware_parameters["example_param_hw_start_duration_sec"]);
   hw_stop_sec_ = stod(info_.hardware_parameters["example_param_hw_stop_duration_sec"]);
@@ -141,6 +139,19 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_configure
     RCLCPP_INFO(get_logger(), "%.1f seconds left...", hw_start_sec_ - i);
   }
   // END: This part here is for exemplary purposes - Please do not copy to your production code
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  std::cout << "hw_start_sec_: " << hw_start_sec_ << std::endl;
+  std::cout << "hw_states_: ";
+  for (auto val : hw_states_) {
+    std::cout << val << " ";
+  }
+  std::cout << std::endl;
+  std::cout << "hw_commands_: ";
+  for (auto val : hw_commands_) {
+    std::cout << val << " ";
+  }
+  std::cout << std::endl;
 
   // reset values always when configuring hardware
   for (uint i = 0; i < hw_states_.size(); i++)
@@ -148,6 +159,18 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_configure
     hw_states_[i] = 0;
     hw_commands_[i] = 0;
   }
+
+  std::cout << "hw_states_: ";
+  for (auto val : hw_states_) {
+    std::cout << val << " ";
+  }
+  std::cout << std::endl;
+  std::cout << "hw_commands_: ";
+  for (auto val : hw_commands_) {
+    std::cout << val << " ";
+  }
+  std::cout << std::endl;
+
   RCLCPP_INFO(get_logger(), "Successfully configured!");
 
   return hardware_interface::CallbackReturn::SUCCESS;
