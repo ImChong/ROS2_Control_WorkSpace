@@ -45,12 +45,42 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_init(
   std::cout << "info_.name: " << info_.name << std::endl;
   std::cout << "info_.type: " << info_.type << std::endl;
   std::cout << "info_.hardware_class_type: " << info_.hardware_class_type << std::endl;
+  std::cout << "info_.joints.size(): " << info_.joints.size() << std::endl;
+  for (const auto & joint : info_.joints)
+  {
+    std::cout << "====================" << std::endl;
+    std::cout << "\tjoint.name: " << joint.name << std::endl;
+    std::cout << "\tjoint.type: " << joint.type << std::endl;
+    std::cout << "\tjoint.command_interfaces.size(): " << joint.command_interfaces.size() << std::endl;
+    for (const auto & command_interface : joint.command_interfaces)
+    {
+      std::cout << "\t\tcommand_interface.name: " << command_interface.name << std::endl;
+      std::cout << "\t\tcommand_interface.min: " << command_interface.min << std::endl;
+      std::cout << "\t\tcommand_interface.max: " << command_interface.max << std::endl;
+      std::cout << "\t\tcommand_interface.initial_value: " << command_interface.initial_value << std::endl;
+      std::cout << "\t\tcommand_interface.data_type: " << command_interface.data_type << std::endl;
+      std::cout << "\t\tcommand_interface.size: " << command_interface.size << std::endl;
+    }
+    std::cout << "\tjoint.state_interfaces.size(): " << joint.state_interfaces.size() << std::endl;
+    for (const auto & state_interface : joint.state_interfaces)
+    {
+      std::cout << "\t\tstate_interface.name: " << state_interface.name << std::endl;
+      std::cout << "\t\tstate_interface.min: " << state_interface.min << std::endl;
+      std::cout << "\t\tstate_interface.max: " << state_interface.max << std::endl;
+      std::cout << "\t\tstate_interface.initial_value: " << state_interface.initial_value << std::endl;
+      std::cout << "\t\tstate_interface.data_type: " << state_interface.data_type << std::endl;
+      std::cout << "\t\tstate_interface.size: " << state_interface.size << std::endl;
+    }
+  }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   // BEGIN: This part here is for exemplary purposes - Please do not copy to your production code
   hw_start_sec_ = stod(info_.hardware_parameters["example_param_hw_start_duration_sec"]);
   hw_stop_sec_ = stod(info_.hardware_parameters["example_param_hw_stop_duration_sec"]);
   hw_slowdown_ = stod(info_.hardware_parameters["example_param_hw_slowdown"]);
 
+  // 打印所有参数
   std::cout << "hw_start_sec_: " << hw_start_sec_ << std::endl;
   std::cout << "hw_stop_sec_: " << hw_stop_sec_ << std::endl;
   std::cout << "hw_slowdown_: " << hw_slowdown_ << std::endl;
