@@ -145,12 +145,12 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_configure
   // END: This part here is for exemplary purposes - Please do not copy to your production code
 
   std::cout << "hw_start_sec_: " << hw_start_sec_ << std::endl;
-  std::cout << "hw_states_: ";
+  std::cout << "\thw_states_: ";
   for (auto val : hw_states_) {
     std::cout << val << " ";
   }
   std::cout << std::endl;
-  std::cout << "hw_commands_: ";
+  std::cout << "\thw_commands_: ";
   for (auto val : hw_commands_) {
     std::cout << val << " ";
   }
@@ -165,12 +165,12 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_configure
 
   std::cout << "finished on_configure()" << std::endl;
 
-  std::cout << "hw_states_: ";
+  std::cout << "\thw_states_: ";
   for (auto val : hw_states_) {
     std::cout << val << " ";
   }
   std::cout << std::endl;
-  std::cout << "hw_commands_: ";
+  std::cout << "\thw_commands_: ";
   for (auto val : hw_commands_) {
     std::cout << val << " ";
   }
@@ -247,6 +247,8 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_activate(
     std::cout << "\thw_commands_[" << i << "]: " << hw_commands_[i] << std::endl;
     hw_commands_[i] = hw_states_[i];
   }
+
+  std::cout << "finished on_activate()" << std::endl;
 
   RCLCPP_INFO(get_logger(), "Successfully activated!");
 
