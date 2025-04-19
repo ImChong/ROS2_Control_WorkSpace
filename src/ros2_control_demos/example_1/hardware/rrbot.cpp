@@ -30,7 +30,7 @@
 namespace ros2_control_demo_example_1
 {
 
-// on_init 主要功能：初始化硬件接口hw_states_和hw_commands_，设置日志和时钟
+// NOTE: on_init 主要功能：初始化硬件接口hw_states_和hw_commands_，设置日志和时钟
 hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_init(
   const hardware_interface::HardwareInfo & info)
 {
@@ -130,7 +130,7 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_init(
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-// on_configure 主要功能：将状态和命令接口初始化为默认值，在此默认值为0
+// NOTE: on_configure 主要功能：将状态和命令接口初始化为默认值，在此默认值为0
 hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_configure(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
@@ -181,7 +181,7 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_configure
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-// 导出状态接口
+// NOTE: 导出状态接口
 std::vector<hardware_interface::StateInterface>
 RRBotSystemPositionOnlyHardware::export_state_interfaces()
 {
@@ -204,7 +204,7 @@ RRBotSystemPositionOnlyHardware::export_state_interfaces()
   return state_interfaces;
 }
 
-// 导出命令接口
+// NOTE: 导出命令接口
 std::vector<hardware_interface::CommandInterface>
 RRBotSystemPositionOnlyHardware::export_command_interfaces()
 {
@@ -227,6 +227,7 @@ RRBotSystemPositionOnlyHardware::export_command_interfaces()
   return command_interfaces;
 }
 
+// NOTE: on_activate 主要功能：激活，将状态接口赋值给命令接口
 hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
@@ -254,8 +255,8 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_activate(
 
   return hardware_interface::CallbackReturn::SUCCESS;
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// NOTE: on_deactivate 主要功能：取消激活
 hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_deactivate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
@@ -274,6 +275,7 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_deactivat
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
+// NOTE: read 主要功能：读取状态
 hardware_interface::return_type RRBotSystemPositionOnlyHardware::read(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
@@ -286,7 +288,7 @@ hardware_interface::return_type RRBotSystemPositionOnlyHardware::read(
     // Simulate RRBot's movement
     hw_states_[i] = hw_states_[i] + (hw_commands_[i] - hw_states_[i]) / hw_slowdown_;
 
-    ss << std::fixed << std::setprecision(2) << std::endl
+    ss << std::fixed << std::setprecision(4) << std::endl
        << "\t" << hw_states_[i] << " for joint '" << info_.joints[i].name << "'";
   }
   RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), 500, "%s", ss.str().c_str());
@@ -295,6 +297,9 @@ hardware_interface::return_type RRBotSystemPositionOnlyHardware::read(
   return hardware_interface::return_type::OK;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// NOTE: write 主要功能：写入命令
 hardware_interface::return_type RRBotSystemPositionOnlyHardware::write(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
