@@ -163,6 +163,8 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_configure
     hw_commands_[i] = 0;
   }
 
+  std::cout << "finished on_configure()" << std::endl;
+
   std::cout << "hw_states_: ";
   for (auto val : hw_states_) {
     std::cout << val << " ";
@@ -179,6 +181,7 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_configure
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
+// 导出状态接口
 std::vector<hardware_interface::StateInterface>
 RRBotSystemPositionOnlyHardware::export_state_interfaces()
 {
@@ -201,7 +204,7 @@ RRBotSystemPositionOnlyHardware::export_state_interfaces()
   return state_interfaces;
 }
 
-
+// 导出命令接口
 std::vector<hardware_interface::CommandInterface>
 RRBotSystemPositionOnlyHardware::export_command_interfaces()
 {
@@ -224,9 +227,6 @@ RRBotSystemPositionOnlyHardware::export_command_interfaces()
   return command_interfaces;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
@@ -243,6 +243,8 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_activate(
   // command and state should be equal when starting
   for (uint i = 0; i < hw_states_.size(); i++)
   {
+    std::cout << "\thw_states_[" << i << "]: " << hw_states_[i] << std::endl;
+    std::cout << "\thw_commands_[" << i << "]: " << hw_commands_[i] << std::endl;
     hw_commands_[i] = hw_states_[i];
   }
 
@@ -250,6 +252,7 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_activate(
 
   return hardware_interface::CallbackReturn::SUCCESS;
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_deactivate(
   const rclcpp_lifecycle::State & /*previous_state*/)
