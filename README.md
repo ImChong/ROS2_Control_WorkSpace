@@ -23,3 +23,15 @@ xacro 转换至 urdf 文件
 ```bash
 xacro src/ros2_control_demos/example_1/description/urdf/rrbot.urdf.xacro > src/ros2_control_demos/example_1/description/urdf/rrbot.urdf
 ```
+
+发送测试指令
+
+```bash
+ros2 topic pub --once /forward_position_controller/commands std_msgs/msg/Float64MultiArray "data:
+- 2.0
+- -2.0"
+```
+
+```bash
+ros2 topic pub --once /joint_trajectory_position_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory '{joint_names: ["joint1", "joint2"], points: [{positions: [2.0, -2.0], time_from_start: {sec: 1, nanosec: 0}}]}'
+```
