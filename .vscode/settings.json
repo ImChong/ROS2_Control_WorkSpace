@@ -1,5 +1,10 @@
 {
     "files.associations": {
         "chrono": "cpp"
-    }
+    },
+    "spellright.language": [],
+    "spellright.documentTypes": [
+        "latex",
+        "plaintext"
+    ]
 }
