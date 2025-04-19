@@ -25,6 +25,7 @@
 
 #include "hardware_interface/types/hardware_interface_type_values.hpp"
 #include "rclcpp/rclcpp.hpp"
+#include <iostream>
 
 namespace ros2_control_demo_example_1
 {
@@ -139,7 +140,6 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_configure
     RCLCPP_INFO(get_logger(), "%.1f seconds left...", hw_start_sec_ - i);
   }
   // END: This part here is for exemplary purposes - Please do not copy to your production code
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   std::cout << "hw_start_sec_: " << hw_start_sec_ << std::endl;
   std::cout << "hw_states_: ";
@@ -179,28 +179,50 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_configure
 std::vector<hardware_interface::StateInterface>
 RRBotSystemPositionOnlyHardware::export_state_interfaces()
 {
+  std::cout << "=====" << std::endl;
+  std::cout << "RRBotSystemPositionOnlyHardware::export_state_interfaces()" << std::endl;
+
   std::vector<hardware_interface::StateInterface> state_interfaces;
   for (uint i = 0; i < info_.joints.size(); i++)
   {
+    std::cout << "\tinfo_.joints[" << i << "].name: " << info_.joints[i].name << std::endl;
+    std::cout << "\thardware_interface::HW_IF_POSITION: " << hardware_interface::HW_IF_POSITION << std::endl;
+    std::cout << "\thw_states_[" << i << "]: " << hw_states_[i] << std::endl;
+
     state_interfaces.emplace_back(hardware_interface::StateInterface(
       info_.joints[i].name, hardware_interface::HW_IF_POSITION, &hw_states_[i]));
   }
 
+  std::cout << "=====" << std::endl;
+  std::cout << "finished export_state_interfaces()" << std::endl;
   return state_interfaces;
 }
+
 
 std::vector<hardware_interface::CommandInterface>
 RRBotSystemPositionOnlyHardware::export_command_interfaces()
 {
+  std::cout << "=====" << std::endl;
+  std::cout << "RRBotSystemPositionOnlyHardware::export_command_interfaces()" << std::endl;
+
   std::vector<hardware_interface::CommandInterface> command_interfaces;
   for (uint i = 0; i < info_.joints.size(); i++)
   {
+    std::cout << "\tinfo_.joints[" << i << "].name: " << info_.joints[i].name << std::endl;
+    std::cout << "\thardware_interface::HW_IF_POSITION: " << hardware_interface::HW_IF_POSITION << std::endl;
+    std::cout << "\thw_commands_[" << i << "]: " << hw_commands_[i] << std::endl;
+
     command_interfaces.emplace_back(hardware_interface::CommandInterface(
       info_.joints[i].name, hardware_interface::HW_IF_POSITION, &hw_commands_[i]));
   }
 
+  std::cout << "=====" << std::endl;
+  std::cout << "finished export_command_interfaces()" << std::endl;
   return command_interfaces;
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
