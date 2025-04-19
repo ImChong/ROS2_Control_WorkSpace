@@ -41,10 +41,20 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_init(
     rclcpp::get_logger("controller_manager.resource_manager.hardware_component.system.RRBot"));
   clock_ = std::make_shared<rclcpp::Clock>(rclcpp::Clock());
 
+  // 打印所有info
+  std::cout << "info_.name: " << info_.name << std::endl;
+  std::cout << "info_.type: " << info_.type << std::endl;
+  std::cout << "info_.hardware_class_type: " << info_.hardware_class_type << std::endl;
+
   // BEGIN: This part here is for exemplary purposes - Please do not copy to your production code
   hw_start_sec_ = stod(info_.hardware_parameters["example_param_hw_start_duration_sec"]);
   hw_stop_sec_ = stod(info_.hardware_parameters["example_param_hw_stop_duration_sec"]);
   hw_slowdown_ = stod(info_.hardware_parameters["example_param_hw_slowdown"]);
+
+  std::cout << "hw_start_sec_: " << hw_start_sec_ << std::endl;
+  std::cout << "hw_stop_sec_: " << hw_stop_sec_ << std::endl;
+  std::cout << "hw_slowdown_: " << hw_slowdown_ << std::endl;
+
   // END: This part here is for exemplary purposes - Please do not copy to your production code
   hw_states_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
   hw_commands_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
