@@ -29,6 +29,8 @@
 
 namespace ros2_control_demo_example_1
 {
+
+// on_init 主要功能：初始化硬件接口hw_states_和hw_commands_，设置日志和时钟
 hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_init(
   const hardware_interface::HardwareInfo & info)
 {
@@ -128,6 +130,7 @@ hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_init(
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
+// on_configure 主要功能：将状态和命令接口初始化为默认值，在此默认值为0
 hardware_interface::CallbackReturn RRBotSystemPositionOnlyHardware::on_configure(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
