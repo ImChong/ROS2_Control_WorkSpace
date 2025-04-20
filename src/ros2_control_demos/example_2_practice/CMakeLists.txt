@@ -7,14 +7,21 @@ endif()
 
 # find dependencies
 set(THIS_PACKAGE_INCLUDE_DEPENDS
+  ament_cmake
   hardware_interface
   pluginlib
   rclcpp
   rclcpp_lifecycle
 )
 
-find_package(ament_cmake REQUIRED)
+foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
+  find_package(${Dependency} REQUIRED)
+endforeach()
 
-
+# INSTALL
+install(
+  DIRECTORY description/launch description/urdf description/rviz
+  DESTINATION share/${PROJECT_NAME}
+)
 
 ament_package()
