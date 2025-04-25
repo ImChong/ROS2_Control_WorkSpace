@@ -4,8 +4,9 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
+                "${workspaceFolder}/src/ros2_control_demos/**",
                 "/opt/ros/humble/**",
-                "${workspaceFolder}/src/ros2_control_demos/**"
+                "/usr/include/gazebo-11"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

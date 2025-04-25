@@ -45,7 +45,7 @@ int main(int argc, char * argv[])
   publisher->publish(commands);
   std::this_thread::sleep_for(1s);
 
-  commands.data[0] = -1;
+  commands.data[0] = -2;
   publisher->publish(commands);
   std::this_thread::sleep_for(1s);
 

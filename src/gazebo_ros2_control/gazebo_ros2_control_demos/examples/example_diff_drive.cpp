@@ -34,13 +34,13 @@ int main(int argc, char * argv[])
 
   geometry_msgs::msg::Twist command;
 
-  command.linear.x = 0.2;
+  command.linear.x = -10.0;
   command.linear.y = 0.0;
   command.linear.z = 0.0;
 
   command.angular.x = 0.0;
   command.angular.y = 0.0;
-  command.angular.z = 0.1;
+  command.angular.z = -1.5;
 
   while (1) {
     publisher->publish(command);
