@@ -26,21 +26,6 @@ def generate_launch_description():
     declared_arguments = []
     declared_arguments.append(
         DeclareLaunchArgument(
-            "description_package",
-            default_value="ros2_control_demos_example_1_display_urdf",
-            description="Description package with robot URDF/xacro files. Usually the argument \
-        is not set, it enables use of a custom description.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "description_file",
-            default_value="rrbot.urdf.xacro",
-            description="URDF/XACRO description file with the robot.",
-        )
-    )
-    declared_arguments.append(
-        DeclareLaunchArgument(
             "gui",
             default_value="true",
             description="Start Rviz2 and Joint State Publisher gui automatically \
@@ -58,8 +43,6 @@ def generate_launch_description():
     )
 
     # Initialize Arguments
-    description_package = LaunchConfiguration("description_package")
-    description_file = LaunchConfiguration("description_file")
     gui = LaunchConfiguration("gui")
     prefix = LaunchConfiguration("prefix")
 
@@ -69,7 +52,7 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare("ros2_control_demos_example_1_display_urdf"), "urdf", description_file]
+                [FindPackageShare("ros2_control_demos_example_1_display_urdf"), "urdf", "rrbot.urdf.xacro"]
             ),
             " ",
             "prefix:=",
@@ -79,7 +62,7 @@ def generate_launch_description():
     robot_description = {"robot_description": robot_description_content}
 
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare(description_package), "rviz", "rrbot.rviz"]
+        [FindPackageShare("ros2_control_demos_example_1_display_urdf"), "rviz", "rrbot.rviz"]
     )
 
     joint_state_publisher_node = Node(
