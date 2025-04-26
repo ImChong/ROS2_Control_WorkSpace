@@ -13,29 +13,13 @@
 # limitations under the License.
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
 
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-    # Declare arguments
-    declared_arguments = []
-    declared_arguments.append(
-        DeclareLaunchArgument(
-            "prefix",
-            default_value='""',
-            description="Prefix of the joint names, useful for \
-        multi-robot setup. If changed than also joint names in the controllers' configuration \
-        have to be updated.",
-        )
-    )
-
-    # Initialize Arguments
-    prefix = LaunchConfiguration("prefix")
-
     # Get URDF via xacro
     robot_description_content = Command(
         [
@@ -45,8 +29,7 @@ def generate_launch_description():
                 [FindPackageShare("ros2_control_demos_example_1_display_urdf"), "urdf", "rrbot.urdf.xacro"]
             ),
             " ",
-            "prefix:=",
-            prefix,
+            "prefix:=\"\"",
         ]
     )
     robot_description = {"robot_description": robot_description_content}
@@ -79,4 +62,4 @@ def generate_launch_description():
         rviz_node,
     ]
 
-    return LaunchDescription(declared_arguments + nodes)
+    return LaunchDescription(nodes)
