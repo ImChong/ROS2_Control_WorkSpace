@@ -8,8 +8,10 @@ endif()
 # DEPENDENCIES #########################################################################################################
 set(THIS_PACKAGE_INCLUDE_DEPENDS
   ament_cmake
+  hardware_interface
   pluginlib
   rclcpp
+  rclcpp_lifecycle
 )
 foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
   find_package(${Dependency} REQUIRED)
