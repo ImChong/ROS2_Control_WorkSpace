@@ -8,6 +8,7 @@ endif()
 # DEPENDENCIES #########################################################################################################
 set(THIS_PACKAGE_INCLUDE_DEPENDS
   ament_cmake
+  pluginlib
   rclcpp
 )
 foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
