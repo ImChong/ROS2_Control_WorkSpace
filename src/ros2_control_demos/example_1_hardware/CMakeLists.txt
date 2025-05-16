@@ -30,6 +30,9 @@ ament_target_dependencies(
   ${THIS_PACKAGE_INCLUDE_DEPENDS}
 )
 
+# Export hardware plugins ##############################################################################################
+pluginlib_export_plugin_description_file(hardware_interface ros2_control_demo_example_1_hardware.xml)
+
 # INSTALL ##############################################################################################################
 install(
   DIRECTORY description/
