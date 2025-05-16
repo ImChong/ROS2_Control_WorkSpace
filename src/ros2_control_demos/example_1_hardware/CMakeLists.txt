@@ -30,7 +30,7 @@ ament_target_dependencies(
   ${THIS_PACKAGE_INCLUDE_DEPENDS}
 )
 
-# INSTALL
+# INSTALL ##############################################################################################################
 install(
   DIRECTORY description/
   DESTINATION share/ros2_control_demo_example_1_hardware/description
