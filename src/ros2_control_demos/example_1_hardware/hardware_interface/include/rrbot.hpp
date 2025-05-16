@@ -1,8 +1,0 @@
-#ifndef ROS2_CONTROL_DEMO_EXAMPLE_1__RRBOT_HPP_
-#define ROS2_CONTROL_DEMO_EXAMPLE_1__RRBOT_HPP_
-
-
-
-
-
-#endif
