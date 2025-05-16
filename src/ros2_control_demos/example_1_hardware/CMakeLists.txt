@@ -1,14 +1,25 @@
-cmake_minimum_required(VERSION 3.8)
-project(example_1_hardware)
+cmake_minimum_required(VERSION 3.20)
+project(ros2_control_demos_example_1_hardware)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
-find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+# DEPENDENCIES
+set(THIS_PACKAGE_INCLUDE_DEPENDS
+  ament_cmake
+  rclcpp
+)
+
+foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
+  find_package(${Dependency} REQUIRED)
+endforeach()
+
+# INSTALL
+install(
+  DIRECTORY description/
+  DESTINATION share/ros2_control_demos_example_1_hardware
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
