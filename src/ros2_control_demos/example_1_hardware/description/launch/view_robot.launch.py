@@ -26,7 +26,7 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare("ros2_control_demos_example_1_hardware"), "urdf", "rrbot.urdf.xacro"]
+                [FindPackageShare("ros2_control_demos_example_1_hardware"), "description", "urdf", "rrbot.urdf.xacro"]
             ),
             " ",
             "prefix:=\"\"",
@@ -35,7 +35,7 @@ def generate_launch_description():
     robot_description = {"robot_description": robot_description_content}
 
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare("ros2_control_demos_example_1_hardware"), "rviz", "rrbot.rviz"]
+        [FindPackageShare("ros2_control_demos_example_1_hardware"), "description", "rviz", "rrbot.rviz"]
     )
 
     joint_state_publisher_node = Node(

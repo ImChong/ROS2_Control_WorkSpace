@@ -32,8 +32,8 @@ install(
 )
 
 install(
-  DIRECTORY hardware/
-  DESTINATION share/ros2_control_demos_example_1_hardware/hardware
+  DIRECTORY hardware/include/
+  DESTINATION share/ros2_control_demos_example_1_hardware/hardware/include
 )
 
 # TEST
