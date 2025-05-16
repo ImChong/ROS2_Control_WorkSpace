@@ -3,10 +3,13 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
-                "${workspaceFolder}/src/ros2_control_demos/**",
+                // "${workspaceFolder}/**",
+                // "${workspaceFolder}/src/ros2_control_demos/**",
+                "${workspaceFolder}/src/ros2_control_demos/example_1_hardware/hardware/include/**",
+                "${workspaceFolder}/install/ros2_control_demo_example_1_hardware/include/**",
                 "/opt/ros/humble/**",
-                "/usr/include/gazebo-11"
+                "/usr/include/gazebo-11",
+                "/opt/ros/humble/include"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

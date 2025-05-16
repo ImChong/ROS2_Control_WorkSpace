@@ -51,7 +51,7 @@ install(
 )
 install(
   DIRECTORY hardware/include/
-  DESTINATION include/hardware/
+  DESTINATION include/hardware
 )
 install(TARGETS ros2_control_demo_example_1_hardware
   EXPORT export_ros2_control_demo_example_1_hardware
