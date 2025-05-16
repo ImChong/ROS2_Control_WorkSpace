@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(ros2_control_demos_example_1_hardware)
+project(ros2_control_demo_example_1_hardware)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -15,25 +15,41 @@ foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
   find_package(${Dependency} REQUIRED)
 endforeach()
 
+## COMPILE
+add_library(
+  ros2_control_demo_example_1_hardware
+  SHARED
+  hardware/rrbot.cpp
+)
+target_compile_features(ros2_control_demo_example_1_hardware PUBLIC cxx_std_17)
+target_include_directories(ros2_control_demo_example_1_hardware PUBLIC
+$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/hardware/include>
+$<INSTALL_INTERFACE:include/ros2_control_demo_example_1_hardware>
+)
+ament_target_dependencies(
+  ros2_control_demo_example_1_hardware PUBLIC
+  ${THIS_PACKAGE_INCLUDE_DEPENDS}
+)
+
 # INSTALL
 install(
   DIRECTORY description/
-  DESTINATION share/ros2_control_demos_example_1_hardware/description
+  DESTINATION share/ros2_control_demo_example_1_hardware/description
 )
 
 install(
   DIRECTORY launch/
-  DESTINATION share/ros2_control_demos_example_1_hardware/launch
+  DESTINATION share/ros2_control_demo_example_1_hardware/launch
 )
 
 install(
   DIRECTORY controller/
-  DESTINATION share/ros2_control_demos_example_1_hardware/controller
+  DESTINATION share/ros2_control_demo_example_1_hardware/controller
 )
 
 install(
   DIRECTORY hardware/include/
-  DESTINATION share/ros2_control_demos_example_1_hardware/hardware/include
+  DESTINATION include/hardware/
 )
 
 # TEST
@@ -49,4 +65,5 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 ament_package()

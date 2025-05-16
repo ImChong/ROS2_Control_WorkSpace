@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>ros2_control_demos_example_1_hardware</name>
+  <name>ros2_control_demo_example_1_hardware</name>
   <version>1.0.0</version>
   <description>Activate hardware interface for RRbot</description>
   <maintainer email="chongliu2021@163.com">mot</maintainer>
