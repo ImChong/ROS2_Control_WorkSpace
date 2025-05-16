@@ -14,12 +14,15 @@
 
 namespace rrbot_hardware
 {
+  // 初始化硬件接口
   hardware_interface::CallbackReturn RRBotHardware::on_init(const hardware_interface::HardwareInfo & info)
   {
     if (hardware_interface::SystemInterface::on_init(info) != hardware_interface::CallbackReturn::SUCCESS)
     {
         return hardware_interface::CallbackReturn::ERROR;
     }
+
+
     return hardware_interface::CallbackReturn::SUCCESS;
   }
 
