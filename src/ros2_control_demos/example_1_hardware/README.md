@@ -2,8 +2,8 @@
 
 - [1. example 1 hardware](#1-example-1-hardware)
   - [1.1. 创建 ros2 包：ros2\_control\_demos\_example\_1\_hardware](#11-创建-ros2-包ros2_control_demos_example_1_hardware)
-  - [编译 ros2\_control\_demos\_example\_1\_hardware](#编译-ros2_control_demos_example_1_hardware)
-  - [运行 ros2\_control\_demos\_example\_1\_hardware](#运行-ros2_control_demos_example_1_hardware)
+  - [1.2. 编译 ros2\_control\_demos\_example\_1\_hardware](#12-编译-ros2_control_demos_example_1_hardware)
+  - [1.3. 运行 ros2\_control\_demos\_example\_1\_hardware](#13-运行-ros2_control_demos_example_1_hardware)
 
 此包的目的是：
 
@@ -17,13 +17,13 @@
 ros2 pkg create example_1_hardware --build-type ament_cmake --dependencies rclcpp
 ```
 
-## 编译 ros2_control_demos_example_1_hardware
+## 1.2. 编译 ros2_control_demos_example_1_hardware
 
 ```bash
 colcon build --packages-select ros2_control_demos_example_1_hardware
 ```
 
-## 运行 ros2_control_demos_example_1_hardware
+## 1.3. 运行 ros2_control_demos_example_1_hardware
 
 ```bash
 source install/setup.bash
