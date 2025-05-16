@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(ros2_control_demos_example_1_display_urdf LANGUAGES CXX)
+project(ros2_control_demo_example_1_display_urdf LANGUAGES CXX)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
   add_compile_options(-Wall -Wextra)
