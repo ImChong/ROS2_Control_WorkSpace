@@ -1,11 +1,11 @@
 # 1. example 1 hardware
 
 - [1. example 1 hardware](#1-example-1-hardware)
-  - [1.1. 创建 ros2 包：ros2\_control\_demos\_example\_1\_hardware](#11-创建-ros2-包ros2_control_demos_example_1_hardware)
-  - [1.2. 编译 ros2\_control\_demos\_example\_1\_hardware](#12-编译-ros2_control_demos_example_1_hardware)
-  - [1.3. 运行 ros2\_control\_demos\_example\_1\_hardware](#13-运行-ros2_control_demos_example_1_hardware)
-    - [1.3.1. view\_robot.launch.py](#131-view_robotlaunchpy)
-    - [1.3.2. rrbot.launch.py](#132-rrbotlaunchpy)
+  - [1.1. 创建 ros2 包：ros2\_control\_demo\_example\_1\_hardware](#11-创建-ros2-包ros2_control_demo_example_1_hardware)
+  - [1.2. 编译 ros2\_control\_demo\_example\_1\_hardware](#12-编译-ros2_control_demo_example_1_hardware)
+  - [1.3. 运行 ros2\_control\_demo\_example\_1\_hardware](#13-运行-ros2_control_demo_example_1_hardware)
+    - [1.3.1. view\_robot.launch.py 查看RRBot机器人URDF](#131-view_robotlaunchpy-查看rrbot机器人urdf)
+    - [1.3.2. rrbot.launch.py 运行RRBot机器人硬件以及控制器](#132-rrbotlaunchpy-运行rrbot机器人硬件以及控制器)
 
 此包的目的是：
 
@@ -13,30 +13,30 @@
 - 调用rrbot机器人硬件
 - 通过terminal与rrbot机器人硬件进行交互
 
-## 1.1. 创建 ros2 包：ros2_control_demos_example_1_hardware
+## 1.1. 创建 ros2 包：ros2_control_demo_example_1_hardware
 
 ```bash
 ros2 pkg create example_1_hardware --build-type ament_cmake --dependencies rclcpp
 ```
 
-## 1.2. 编译 ros2_control_demos_example_1_hardware
+## 1.2. 编译 ros2_control_demo_example_1_hardware
 
 ```bash
-colcon build --packages-select ros2_control_demos_example_1_hardware
+colcon build --packages-select ros2_control_demo_example_1_hardware
 ```
 
-## 1.3. 运行 ros2_control_demos_example_1_hardware
+## 1.3. 运行 ros2_control_demo_example_1_hardware
 
-### 1.3.1. view_robot.launch.py
+### 1.3.1. view_robot.launch.py 查看RRBot机器人URDF
 
 ```bash
 source install/setup.bash
-ros2 launch ros2_control_demos_example_1_hardware view_robot.launch.py
+ros2 launch ros2_control_demo_example_1_hardware view_robot.launch.py
 ```
 
-### 1.3.2. rrbot.launch.py
+### 1.3.2. rrbot.launch.py 运行RRBot机器人硬件以及控制器
 
 ```bash
 source install/setup.bash
-ros2 launch ros2_control_demos_example_1_hardware rrbot.launch.py
+ros2 launch ros2_control_demo_example_1_hardware rrbot.launch.py
 ```
