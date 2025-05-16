@@ -80,6 +80,7 @@ def generate_launch_description():
         )
     )
 
+    # Delay start of joint_state_broadcaster after `robot_controller`
     delay_joint_state_broadcaster_after_robot_controller_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
             target_action=robot_controller_spawner,
