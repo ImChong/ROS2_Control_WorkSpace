@@ -18,9 +18,25 @@ endforeach()
 # INSTALL
 install(
   DIRECTORY description/
-  DESTINATION share/ros2_control_demos_example_1_hardware
+  DESTINATION share/ros2_control_demos_example_1_hardware/description
 )
 
+install(
+  DIRECTORY launch/
+  DESTINATION share/ros2_control_demos_example_1_hardware/launch
+)
+
+install(
+  DIRECTORY controller/
+  DESTINATION share/ros2_control_demos_example_1_hardware/controller
+)
+
+install(
+  DIRECTORY hardware/
+  DESTINATION share/ros2_control_demos_example_1_hardware/hardware
+)
+
+# TEST
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
