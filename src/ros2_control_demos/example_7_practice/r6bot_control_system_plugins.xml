@@ -1,0 +1,16 @@
+<library path="r6bot_control_system">
+  <class name="r6bot_hardware_namespace/R6BotHardware"
+         type="r6bot_hardware_namespace::R6BotHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      R6Bot hardware interface
+    </description>
+  </class>
+  <class name="r6bot_controller_namespace/R6BotController"
+         type="r6bot_controller_namespace::R6BotController"
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      R6Bot controller interface
+    </description>
+  </class>
+</library>
