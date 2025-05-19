@@ -17,11 +17,6 @@ void print_vector_double(const std::vector<double> & vec)
 }
 
 
-
-
-
-
-
 namespace r6bot_hardware_namespace
 {
 
