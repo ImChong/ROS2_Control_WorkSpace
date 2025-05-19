@@ -202,6 +202,12 @@ hardware_interface::CallbackReturn RRBotHardware::on_activate(const rclcpp_lifec
 {
   std::cout << "===== 激活硬件接口 =====" << std::endl;
 
+  // 将状态接口赋值给命令接口
+  for (uint i = 0; i < hw_states_.size(); i++)
+  {
+    hw_commands_[i] = hw_states_[i];
+  }
+
   std::cout << "===== 激活硬件接口结束 =====" << std::endl;
   return hardware_interface::CallbackReturn::SUCCESS;
 }
@@ -213,6 +219,13 @@ hardware_interface::CallbackReturn RRBotHardware::on_deactivate(const rclcpp_lif
 {
   std::cout << "===== 停用硬件接口 =====" << std::endl;
 
+  // 等待停用时间
+  for (int i = 0; i < hw_stop_sec_; i++)
+  {
+    rclcpp::sleep_for(std::chrono::seconds(1));
+    RCLCPP_INFO(get_logger(), "%.1f seconds left...", hw_stop_sec_ - i);
+  }
+
   std::cout << "===== 停用硬件接口结束 =====" << std::endl;
   return hardware_interface::CallbackReturn::SUCCESS;
 }
@@ -220,13 +233,13 @@ hardware_interface::CallbackReturn RRBotHardware::on_deactivate(const rclcpp_lif
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 读取硬件接口
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-hardware_interface::return_type RRBotHardware::read(const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
+hardware_interface::return_type RRBotHardware::read(const rclcpp::Time & time, const rclcpp::Duration & period)
 {
   std::cout << "===== 读取硬件接口 =====" << std::endl;
 
   // 读取当前时间
-  const auto time = clock_->now();
   RCLCPP_INFO(get_logger(), "读取时间: %f", time.seconds());
+  RCLCPP_INFO(get_logger(), "读取周期: %f", period.seconds());
 
   // 读取状态接口
   std::cout << "hw_states_[状态接口]: ";
@@ -239,13 +252,13 @@ hardware_interface::return_type RRBotHardware::read(const rclcpp::Time & /*time*
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 写入硬件接口
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-hardware_interface::return_type RRBotHardware::write(const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
+hardware_interface::return_type RRBotHardware::write(const rclcpp::Time & time, const rclcpp::Duration & period)
 {
   std::cout << "===== 写入硬件接口 =====" << std::endl;
 
   // 写入当前时间
-  const auto time = clock_->now();
   RCLCPP_INFO(get_logger(), "写入时间: %f", time.seconds());
+  RCLCPP_INFO(get_logger(), "写入周期: %f", period.seconds());
 
   // 写入命令接口
   std::cout << "hw_commands_[命令接口]: ";
