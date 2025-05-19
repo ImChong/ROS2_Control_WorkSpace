@@ -2,6 +2,7 @@
 
 - [1. example 1 hardware](#1-example-1-hardware)
   - [1.1. 创建 ros2 包：ros2\_control\_demo\_example\_1\_hardware](#11-创建-ros2-包ros2_control_demo_example_1_hardware)
+  - [文件夹结构](#文件夹结构)
   - [1.2. 编译 ros2\_control\_demo\_example\_1\_hardware](#12-编译-ros2_control_demo_example_1_hardware)
   - [1.3. 运行 ros2\_control\_demo\_example\_1\_hardware](#13-运行-ros2_control_demo_example_1_hardware)
     - [1.3.1. view\_robot.launch.py 查看RRBot机器人URDF](#131-view_robotlaunchpy-查看rrbot机器人urdf)
@@ -20,6 +21,40 @@
 
 ```bash
 ros2 pkg create example_1_hardware --build-type ament_cmake --dependencies rclcpp
+```
+
+## 文件夹结构
+
+```bash
+tree src/ros2_control_demos/example_1_hardware/ -L 4
+```
+
+```bash
+src/ros2_control_demos/example_1_hardware/
+├── CMakeLists.txt                    # CMake构建配置文件
+├── controller                        # 控制器配置目录
+│   └── config
+│       └── rrbot_controllers.yaml    # RRBot机器人控制器配置文件
+├── description                       # 机器人描述文件目录
+│   ├── launch
+│   │   └── view_robot.launch.py     # 用于在RViz中查看机器人URDF的启动文件
+│   ├── rviz
+│   │   └── rrbot.rviz              # RViz配置文件
+│   └── urdf                         # URDF文件目录
+│       ├── rrbot_description.urdf.xacro    # RRBot机器人描述文件
+│       ├── rrbot.materials.xacro           # RRBot机器人材质定义文件
+│       ├── rrbot.ros2_control.xacro        # RRBot机器人ros2_control接口定义文件
+│       └── rrbot.urdf.xacro               # RRBot机器人URDF主文件
+├── hardware                          # 硬件接口实现目录
+│   ├── include
+│   │   └── rrbot.hpp                # RRBot硬件接口头文件
+│   ├── rrbot.cpp                    # RRBot硬件接口实现文件
+│   └── rrbot_hardware_plugin.xml    # RRBot硬件插件描述文件
+├── launch
+│   └── rrbot.launch.py              # RRBot机器人启动文件
+├── package.xml                      # ROS2包配置文件
+├── README.md                        # 项目说明文档
+└── run.sh                           # 一键启动脚本
 ```
 
 ## 1.2. 编译 ros2_control_demo_example_1_hardware
