@@ -15,6 +15,18 @@
 namespace rrbot_hardware
 {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 打印向量
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void print_vector(const std::vector<double> & vec)
+{
+  std::cout << "[ ";
+  for (auto val : vec) {
+    std::cout << val << " ";
+  }
+  std::cout << "]" << std::endl;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 初始化硬件接口
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 hardware_interface::CallbackReturn RRBotHardware::on_init(const hardware_interface::HardwareInfo & info)
@@ -74,18 +86,12 @@ hardware_interface::CallbackReturn RRBotHardware::on_init(const hardware_interfa
   hw_commands_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
 
   // std::cout << "hw_states_.size()[状态接口数量]: " << hw_states_.size() << std::endl;
-  std::cout << "hw_states_[状态接口]: [ ";
-  for (auto val : hw_states_) {
-    std::cout << val << " ";
-  }
-  std::cout << "]" << std::endl;
+  // std::cout << "hw_states_[状态接口]: ";
+  // print_vector(hw_states_);
 
   // std::cout << "hw_commands_.size()[命令接口数量]: " << hw_commands_.size() << std::endl;
-  std::cout << "hw_commands_[命令接口]: [ ";
-  for (auto val : hw_commands_) {
-    std::cout << val << " ";
-  }
-  std::cout << "]" << std::endl;
+  // std::cout << "hw_commands_[命令接口]: ";
+  // print_vector(hw_commands_);
 
   std::cout << "===== 初始化硬件接口结束 =====" << std::endl;
   return hardware_interface::CallbackReturn::SUCCESS;
@@ -99,6 +105,19 @@ std::vector<hardware_interface::StateInterface> RRBotHardware::export_state_inte
   std::cout << "===== 导出状态接口 =====" << std::endl;
   std::vector<hardware_interface::StateInterface> state_interfaces;
 
+  // std::cout << "hw_states_[状态接口][之前]: ";
+  // print_vector(hw_states_);
+
+  for (uint i = 0; i < hw_states_.size(); i++) {
+    state_interfaces.emplace_back(hardware_interface::StateInterface(
+      info_.joints[i].name,
+      hardware_interface::HW_IF_POSITION,
+      &hw_states_[i]));
+  }
+
+  std::cout << "hw_states_[状态接口]: ";
+  print_vector(hw_states_);
+
   std::cout << "===== 导出状态接口结束 =====" << std::endl;
   return state_interfaces;
 }
@@ -110,6 +129,19 @@ std::vector<hardware_interface::CommandInterface> RRBotHardware::export_command_
 {
   std::cout << "===== 导出命令接口 =====" << std::endl;
   std::vector<hardware_interface::CommandInterface> command_interfaces;
+
+  // std::cout << "hw_commands_[命令接口][之前]: ";
+  // print_vector(hw_commands_);
+
+  for (uint i = 0; i < hw_commands_.size(); i++) {
+    command_interfaces.emplace_back(hardware_interface::CommandInterface(
+      info_.joints[i].name,
+      hardware_interface::HW_IF_POSITION,
+      &hw_commands_[i]));
+  }
+
+  std::cout << "hw_commands_[命令接口]: ";
+  print_vector(hw_commands_);
 
   std::cout << "===== 导出命令接口结束 =====" << std::endl;
   return command_interfaces;
