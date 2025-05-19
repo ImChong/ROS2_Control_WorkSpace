@@ -6,7 +6,7 @@
   - [1.3. 文件夹结构](#13-文件夹结构)
   - [1.4. 编译 r6bot\_control\_system](#14-编译-r6bot_control_system)
   - [1.5. 运行 r6bot\_control\_system](#15-运行-r6bot_control_system)
-    - [1.5.1. 一键启动所有运行代码](#151-一键启动所有运行代码)
+    - [1.5.1. 一键启动](#151-一键启动)
 
 此包的目的是：
 
@@ -94,7 +94,7 @@ colcon build --packages-select r6bot_control_system
 
 ## 1.5. 运行 r6bot_control_system
 
-### 1.5.1. 一键启动所有运行代码
+### 1.5.1. 一键启动
 
 ```bash
 ./src/ros2_control_demos/example_7_practice/run.sh
