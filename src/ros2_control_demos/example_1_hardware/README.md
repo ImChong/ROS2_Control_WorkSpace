@@ -7,6 +7,7 @@
     - [1.3.1. view\_robot.launch.py 查看RRBot机器人URDF](#131-view_robotlaunchpy-查看rrbot机器人urdf)
     - [1.3.2. rrbot.launch.py 运行RRBot机器人硬件以及控制器](#132-rrbotlaunchpy-运行rrbot机器人硬件以及控制器)
     - [1.3.3. 一键启动所有运行代码](#133-一键启动所有运行代码)
+  - [1.4. 查看机器人控制器相关信息](#14-查看机器人控制器相关信息)
 
 此包的目的是：
 
@@ -46,4 +47,32 @@ ros2 launch ros2_control_demo_example_1_hardware rrbot.launch.py
 
 ```bash
 ./src/ros2_control_demos/example_1_hardware/run.sh
+```
+
+## 1.4. 查看机器人控制器相关信息
+
+查看当前加载的控制器列表:
+
+```bash
+ros2 control list_controllers
+ros2 control list_controllers --verbose
+```
+
+查看当前加载的硬件组件
+
+```bash
+ros2 control list_hardware_components
+ros2 control list_hardware_components --verbose
+```
+
+查看硬件接口列表
+
+```bash
+ros2 control list_hardware_interfaces
+```
+
+图形界面方式查看
+
+```bash
+ros2 run rqt_controller_manager rqt_controller_manager
 ```
