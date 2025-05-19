@@ -64,9 +64,9 @@ namespace rrbot_hardware
     hw_stop_sec_ = stod(info_.hardware_parameters["hw_stop_sec"]);
     hw_slowdown_ = stod(info_.hardware_parameters["hw_slowdown"]);
 
-    // std::cout << "hw_start_sec_: " << hw_start_sec_ << std::endl;
-    // std::cout << "hw_stop_sec_: " << hw_stop_sec_ << std::endl;
-    // std::cout << "hw_slowdown_: " << hw_slowdown_ << std::endl;
+    std::cout << "hw_start_sec_[启动时间]: " << hw_start_sec_ << std::endl;
+    std::cout << "hw_stop_sec_[停止时间]: " << hw_stop_sec_ << std::endl;
+    std::cout << "hw_slowdown_[减速时间]: " << hw_slowdown_ << std::endl;
 
     hw_states_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
     hw_commands_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
