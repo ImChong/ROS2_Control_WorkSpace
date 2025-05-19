@@ -79,11 +79,11 @@ install(
 )
 install(
   DIRECTORY launch/
-  DESTINATION share/${PROJECT_NAME}
+  DESTINATION share/${PROJECT_NAME}/launch
 )
 install(
   DIRECTORY description/
-  DESTINATION share/${PROJECT_NAME}
+  DESTINATION share/${PROJECT_NAME}/description
 )
 install(
   TARGETS generate_trajectory
@@ -111,4 +111,6 @@ if(BUILD_TESTING)
 endif()
 
 # EXPORTS ##############################################################################################################
+ament_export_targets(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
+ament_export_dependencies(${HARDWARE_INCLUDE_DEPENDS} ${TRAJ_GEN_INCLUDE_DEPENDS} ${CONTROLLER_INCLUDE_DEPENDS})
 ament_package()
