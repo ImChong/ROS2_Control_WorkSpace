@@ -61,7 +61,8 @@ rm -rf build/ install/ log/
 
 ### 1.2.7. example_7 - 6 自由度机器人
 
-- [ ] [example_7 [official]](/src/ros2_control_demos/example_7/README.md)
+- [x] [example_7 [official]](/src/ros2_control_demos/example_7/README.md)
+- [ ] [example_7_practice](/src/ros2_control_demos/example_7_practice/README.md)
 
 ### 1.2.8. example_8 - 使用传动装置
 

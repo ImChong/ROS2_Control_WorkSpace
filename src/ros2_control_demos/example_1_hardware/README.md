@@ -20,6 +20,7 @@
 ## 1.1. 创建 ros2 包：ros2_control_demo_example_1_hardware
 
 ```bash
+cd src/ros2_control_demos/
 ros2 pkg create example_1_hardware --build-type ament_cmake --dependencies rclcpp
 ```
 
