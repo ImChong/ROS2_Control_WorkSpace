@@ -1,4 +1,4 @@
-<library path="ros2_control_demos_example_1_hardware">
+<library path="ros2_control_demo_example_1_hardware">
   <class name="rrbot_hardware/RRBotHardware"
          type="rrbot_hardware::RRBotHardware"
          base_class_type="hardware_interface::SystemInterface">
