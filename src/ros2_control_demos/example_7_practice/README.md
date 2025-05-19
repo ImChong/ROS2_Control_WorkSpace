@@ -6,7 +6,8 @@
   - [1.3. 文件夹结构](#13-文件夹结构)
   - [1.4. 编译 r6bot\_control\_system](#14-编译-r6bot_control_system)
   - [1.5. 运行 r6bot\_control\_system](#15-运行-r6bot_control_system)
-    - [1.5.1. 一键启动](#151-一键启动)
+    - [1.5.1. view\_r6bot.launch.py 查看 r6bot 机器人 URDF](#151-view_r6botlaunchpy-查看-r6bot-机器人-urdf)
+    - [1.5.2. 一键启动](#152-一键启动)
 
 此包的目的是：
 
@@ -94,7 +95,14 @@ colcon build --packages-select r6bot_control_system
 
 ## 1.5. 运行 r6bot_control_system
 
-### 1.5.1. 一键启动
+### 1.5.1. view_r6bot.launch.py 查看 r6bot 机器人 URDF
+
+```bash
+source install/setup.bash
+ros2 launch r6bot_control_system view_r6bot.launch.py
+```
+
+### 1.5.2. 一键启动
 
 ```bash
 ./src/ros2_control_demos/example_7_practice/run.sh
