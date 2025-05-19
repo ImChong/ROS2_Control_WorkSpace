@@ -17,11 +17,20 @@ namespace rrbot_hardware
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 打印向量
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void print_vector(const std::vector<double> & vec)
+void print_vector_double(const std::vector<double> & vec)
 {
   std::cout << "[ ";
   for (auto val : vec) {
     std::cout << val << " ";
+  }
+  std::cout << "]" << std::endl;
+}
+
+void print_vector_component_info(const std::vector<hardware_interface::ComponentInfo> & vec)
+{
+  std::cout << "[ ";
+  for (auto val : vec) {
+    std::cout << val.name << " ";
   }
   std::cout << "]" << std::endl;
 }
@@ -45,6 +54,9 @@ hardware_interface::CallbackReturn RRBotHardware::on_init(const hardware_interfa
   // std::cout << "info_.type[类型]: " << info_.type << std::endl;
   // std::cout << "info_.hardware_class_type[硬件类型]: " << info_.hardware_class_type << std::endl;
   // std::cout << "info_.joints.size()[关节数量]: " << info_.joints.size() << std::endl;
+
+  std::cout << "info_.joints[关节列表]: ";
+  print_vector_component_info(info_.joints);
 
   // // 打印所有joints信息
   // std::cout << "info_.joints[关节列表]: " << std::endl;
@@ -87,11 +99,11 @@ hardware_interface::CallbackReturn RRBotHardware::on_init(const hardware_interfa
 
   // std::cout << "hw_states_.size()[状态接口数量]: " << hw_states_.size() << std::endl;
   // std::cout << "hw_states_[状态接口]: ";
-  // print_vector(hw_states_);
+  // print_vector_double(hw_states_);
 
   // std::cout << "hw_commands_.size()[命令接口数量]: " << hw_commands_.size() << std::endl;
   // std::cout << "hw_commands_[命令接口]: ";
-  // print_vector(hw_commands_);
+  // print_vector_double(hw_commands_);
 
   std::cout << "===== 初始化硬件接口结束 =====" << std::endl;
   return hardware_interface::CallbackReturn::SUCCESS;
@@ -106,7 +118,7 @@ std::vector<hardware_interface::StateInterface> RRBotHardware::export_state_inte
   std::vector<hardware_interface::StateInterface> state_interfaces;
 
   // std::cout << "hw_states_[状态接口][之前]: ";
-  // print_vector(hw_states_);
+  // print_vector_double(hw_states_);
 
   for (uint i = 0; i < hw_states_.size(); i++) {
     state_interfaces.emplace_back(hardware_interface::StateInterface(
@@ -116,7 +128,7 @@ std::vector<hardware_interface::StateInterface> RRBotHardware::export_state_inte
   }
 
   std::cout << "hw_states_[状态接口]: ";
-  print_vector(hw_states_);
+  print_vector_double(hw_states_);
 
   std::cout << "===== 导出状态接口结束 =====" << std::endl;
   return state_interfaces;
@@ -131,7 +143,7 @@ std::vector<hardware_interface::CommandInterface> RRBotHardware::export_command_
   std::vector<hardware_interface::CommandInterface> command_interfaces;
 
   // std::cout << "hw_commands_[命令接口][之前]: ";
-  // print_vector(hw_commands_);
+  // print_vector_double(hw_commands_);
 
   for (uint i = 0; i < hw_commands_.size(); i++) {
     command_interfaces.emplace_back(hardware_interface::CommandInterface(
@@ -141,7 +153,7 @@ std::vector<hardware_interface::CommandInterface> RRBotHardware::export_command_
   }
 
   std::cout << "hw_commands_[命令接口]: ";
-  print_vector(hw_commands_);
+  print_vector_double(hw_commands_);
 
   std::cout << "===== 导出命令接口结束 =====" << std::endl;
   return command_interfaces;
@@ -167,10 +179,10 @@ hardware_interface::CallbackReturn RRBotHardware::on_configure(const rclcpp_life
   }
 
   std::cout << "hw_states_[状态接口]: ";
-  print_vector(hw_states_);
+  print_vector_double(hw_states_);
 
   std::cout << "hw_commands_[命令接口]: ";
-  print_vector(hw_commands_);
+  print_vector_double(hw_commands_);
 
   // 等待启动时间
   for (int i = 0; i < hw_start_sec_; i++)
@@ -212,6 +224,14 @@ hardware_interface::return_type RRBotHardware::read(const rclcpp::Time & /*time*
 {
   std::cout << "===== 读取硬件接口 =====" << std::endl;
 
+  // 读取当前时间
+  const auto time = clock_->now();
+  RCLCPP_INFO(get_logger(), "读取时间: %f", time.seconds());
+
+  // 读取状态接口
+  std::cout << "hw_states_[状态接口]: ";
+  print_vector_double(hw_states_);
+
   std::cout << "===== 读取硬件接口结束 =====" << std::endl;
   return hardware_interface::return_type::OK;
 }
@@ -222,6 +242,14 @@ hardware_interface::return_type RRBotHardware::read(const rclcpp::Time & /*time*
 hardware_interface::return_type RRBotHardware::write(const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   std::cout << "===== 写入硬件接口 =====" << std::endl;
+
+  // 写入当前时间
+  const auto time = clock_->now();
+  RCLCPP_INFO(get_logger(), "写入时间: %f", time.seconds());
+
+  // 写入命令接口
+  std::cout << "hw_commands_[命令接口]: ";
+  print_vector_double(hw_commands_);
 
   std::cout << "===== 写入硬件接口结束 =====" << std::endl;
   return hardware_interface::return_type::OK;
