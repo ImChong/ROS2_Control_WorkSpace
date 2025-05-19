@@ -14,7 +14,9 @@
 
 namespace rrbot_hardware
 {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 初始化硬件接口
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 hardware_interface::CallbackReturn RRBotHardware::on_init(const hardware_interface::HardwareInfo & info)
 {
   if (hardware_interface::SystemInterface::on_init(info) != hardware_interface::CallbackReturn::SUCCESS)
@@ -89,7 +91,33 @@ hardware_interface::CallbackReturn RRBotHardware::on_init(const hardware_interfa
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 导出状态接口
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::vector<hardware_interface::StateInterface> RRBotHardware::export_state_interfaces()
+{
+  std::cout << "===== 导出状态接口 =====" << std::endl;
+  std::vector<hardware_interface::StateInterface> state_interfaces;
+
+  std::cout << "===== 导出状态接口结束 =====" << std::endl;
+  return state_interfaces;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 导出命令接口
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+std::vector<hardware_interface::CommandInterface> RRBotHardware::export_command_interfaces()
+{
+  std::cout << "===== 导出命令接口 =====" << std::endl;
+  std::vector<hardware_interface::CommandInterface> command_interfaces;
+
+  std::cout << "===== 导出命令接口结束 =====" << std::endl;
+  return command_interfaces;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 配置硬件接口
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 hardware_interface::CallbackReturn RRBotHardware::on_configure(const rclcpp_lifecycle::State & /*previous_state*/)
 {
   std::cout << "===== 配置硬件接口 =====" << std::endl;
@@ -104,27 +132,9 @@ hardware_interface::CallbackReturn RRBotHardware::on_configure(const rclcpp_life
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-// 导出状态接口
-std::vector<hardware_interface::StateInterface> RRBotHardware::export_state_interfaces()
-{
-  std::cout << "===== 导出状态接口 =====" << std::endl;
-  std::vector<hardware_interface::StateInterface> state_interfaces;
-
-  std::cout << "===== 导出状态接口结束 =====" << std::endl;
-  return state_interfaces;
-}
-
-// 导出命令接口
-std::vector<hardware_interface::CommandInterface> RRBotHardware::export_command_interfaces()
-{
-  std::cout << "===== 导出命令接口 =====" << std::endl;
-  std::vector<hardware_interface::CommandInterface> command_interfaces;
-
-  std::cout << "===== 导出命令接口结束 =====" << std::endl;
-  return command_interfaces;
-}
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 激活硬件接口
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 hardware_interface::CallbackReturn RRBotHardware::on_activate(const rclcpp_lifecycle::State & /*previous_state*/)
 {
   std::cout << "===== 激活硬件接口 =====" << std::endl;
@@ -133,7 +143,9 @@ hardware_interface::CallbackReturn RRBotHardware::on_activate(const rclcpp_lifec
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 停用硬件接口
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 hardware_interface::CallbackReturn RRBotHardware::on_deactivate(const rclcpp_lifecycle::State & /*previous_state*/)
 {
   std::cout << "===== 停用硬件接口 =====" << std::endl;
@@ -142,7 +154,9 @@ hardware_interface::CallbackReturn RRBotHardware::on_deactivate(const rclcpp_lif
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 读取硬件接口
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 hardware_interface::return_type RRBotHardware::read(const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   std::cout << "===== 读取硬件接口 =====" << std::endl;
@@ -151,7 +165,9 @@ hardware_interface::return_type RRBotHardware::read(const rclcpp::Time & /*time*
   return hardware_interface::return_type::OK;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 写入硬件接口
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 hardware_interface::return_type RRBotHardware::write(const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   std::cout << "===== 写入硬件接口 =====" << std::endl;
