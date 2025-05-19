@@ -8,6 +8,7 @@
     - [1.3.2. rrbot.launch.py 运行RRBot机器人硬件以及控制器](#132-rrbotlaunchpy-运行rrbot机器人硬件以及控制器)
     - [1.3.3. 一键启动所有运行代码](#133-一键启动所有运行代码)
   - [1.4. 查看机器人控制器相关信息](#14-查看机器人控制器相关信息)
+  - [1.5. 发送位置测试指令](#15-发送位置测试指令)
 
 此包的目的是：
 
@@ -75,4 +76,16 @@ ros2 control list_hardware_interfaces
 
 ```bash
 ros2 run rqt_controller_manager rqt_controller_manager
+```
+
+## 1.5. 发送位置测试指令
+
+```bash
+ros2 topic pub --once /forward_position_controller/commands std_msgs/msg/Float64MultiArray "data:
+- 2.0
+- -2.0"
+```
+
+```bash
+ros2 topic pub --once /joint_trajectory_position_controller/joint_trajectory trajectory_msgs/msg/JointTrajectory '{joint_names: ["joint1", "joint2"], points: [{positions: [2.0, -2.0], time_from_start: {sec: 1, nanosec: 0}}]}'
 ```
