@@ -76,16 +76,27 @@ int main(int argc, char ** argv)
     // convert cart to joint velocities
     ik_vel_solver_->CartToJnt(joint_positions, twist, joint_velocities);
 
+    // // copy to trajectory_point_msg
+    // std::memcpy(
+    //   trajectory_point_msg.positions.data(), joint_positions.data.data(),
+    //   trajectory_point_msg.positions.size() * sizeof(double));
+    // std::memcpy(
+    //   trajectory_point_msg.velocities.data(), joint_velocities.data.data(),
+    //   trajectory_point_msg.velocities.size() * sizeof(double));
+
     // copy to trajectory_point_msg
-    std::memcpy(
-      trajectory_point_msg.positions.data(), joint_positions.data.data(),
-      trajectory_point_msg.positions.size() * sizeof(double));
-    std::memcpy(
-      trajectory_point_msg.velocities.data(), joint_velocities.data.data(),
-      trajectory_point_msg.velocities.size() * sizeof(double));
+    for (unsigned int j = 0; j < joint_positions.rows(); ++j) {
+      trajectory_point_msg.positions[j] = joint_positions(j);
+      trajectory_point_msg.velocities[j] = joint_velocities(j);
+    }
+
+    // // integrate joint velocities
+    // joint_positions.data += joint_velocities.data * dt;
 
     // integrate joint velocities
-    joint_positions.data += joint_velocities.data * dt;
+    for (unsigned int j = 0; j < joint_positions.rows(); ++j) {
+      joint_positions(j) += joint_velocities(j) * dt;
+    }
 
     // set timing information
     trajectory_point_msg.time_from_start.sec = i / loop_rate;
@@ -97,9 +108,7 @@ int main(int argc, char ** argv)
   }
 
   pub->publish(trajectory_msg);
-  while (rclcpp::ok())
-  {
-  }
+  while (rclcpp::ok()){}
 
   return 0;
 }
