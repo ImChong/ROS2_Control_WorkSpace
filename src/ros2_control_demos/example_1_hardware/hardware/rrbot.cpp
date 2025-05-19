@@ -154,6 +154,25 @@ hardware_interface::CallbackReturn RRBotHardware::on_configure(const rclcpp_life
 {
   std::cout << "===== 配置硬件接口 =====" << std::endl;
 
+  // 将状态接口初始化为0
+  for (uint i = 0; i < hw_states_.size(); i++)
+  {
+    hw_states_[i] = 0;
+  }
+
+  // 将命令接口初始化为0
+  for (uint i = 0; i < hw_commands_.size(); i++)
+  {
+    hw_commands_[i] = 0;
+  }
+
+  std::cout << "hw_states_[状态接口]: ";
+  print_vector(hw_states_);
+
+  std::cout << "hw_commands_[命令接口]: ";
+  print_vector(hw_commands_);
+
+  // 等待启动时间
   for (int i = 0; i < hw_start_sec_; i++)
   {
     rclcpp::sleep_for(std::chrono::seconds(1));
