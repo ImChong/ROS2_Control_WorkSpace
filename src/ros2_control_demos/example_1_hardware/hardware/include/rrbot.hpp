@@ -46,8 +46,8 @@ private:
   rclcpp::Clock::SharedPtr clock_;
 
   // Store the command for the simulated robot
-  std::vector<double> hw_commands_;
   std::vector<double> hw_states_;
+  std::vector<double> hw_commands_;
 };
 
 }  // namespace rrbot_hardware

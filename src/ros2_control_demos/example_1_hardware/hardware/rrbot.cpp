@@ -26,36 +26,57 @@ namespace rrbot_hardware
     clock_ = std::make_shared<rclcpp::Clock>(rclcpp::Clock());  // 初始化时钟
 
     std::cout << "===== 初始化硬件接口 =====" << std::endl;
-    // 打印所有info
-    std::cout << "info_.name[名称]: " << info_.name << std::endl;
-    std::cout << "info_.type[类型]: " << info_.type << std::endl;
-    std::cout << "info_.hardware_class_type[硬件类型]: " << info_.hardware_class_type << std::endl;
-    std::cout << "info_.joints.size()[关节数量]: " << info_.joints.size() << std::endl;
+    // // 打印所有info
+    // std::cout << "info_.name[名称]: " << info_.name << std::endl;
+    // std::cout << "info_.type[类型]: " << info_.type << std::endl;
+    // std::cout << "info_.hardware_class_type[硬件类型]: " << info_.hardware_class_type << std::endl;
+    // std::cout << "info_.joints.size()[关节数量]: " << info_.joints.size() << std::endl;
 
-    // 打印所有joints信息
-    std::cout << "info_.joints[关节列表]: " << std::endl;
-    for (const auto & joint : info_.joints)
-    {
-      std::cout << "\tjoint.name[关节名称]: " << joint.name << std::endl;
-      std::cout << "\tjoint.type[关节类型]: " << joint.type << std::endl;
-      std::cout << "\tjoint.command_interfaces[命令接口]: " << std::endl;
-      for (const auto & command_interface : joint.command_interfaces)
-      {
-        std::cout << "\t\tcommand_interface.name[接口名称]: " << command_interface.name << std::endl;
-        std::cout << "\t\tcommand_interface.data_type[接口数据类型]: " << command_interface.data_type << std::endl;
-        std::cout << "\t\tcommand_interface.size[接口大小]: " << command_interface.size << std::endl;
-      }
-      std::cout << "\tjoint.state_interfaces[状态接口]: " << std::endl;
-      for (const auto & state_interface : joint.state_interfaces)
-      {
-        std::cout << "\t\tstate_interface.name[接口名称]: " << state_interface.name << std::endl;
-        std::cout << "\t\tstate_interface.data_type[接口数据类型]: " << state_interface.data_type << std::endl;
-        std::cout << "\t\tstate_interface.size[接口大小]: " << state_interface.size << std::endl;
-      }
-    }
+    // // 打印所有joints信息
+    // std::cout << "info_.joints[关节列表]: " << std::endl;
+    // for (const auto & joint : info_.joints)
+    // {
+    //   std::cout << "\tjoint.name[关节名称]: " << joint.name << std::endl;
+    //   std::cout << "\tjoint.type[关节类型]: " << joint.type << std::endl;
+    //   std::cout << "\tjoint.command_interfaces[命令接口]: " << std::endl;
+    //   for (const auto & command_interface : joint.command_interfaces)
+    //   {
+    //     std::cout << "\t\tcommand_interface.name[接口名称]: " << command_interface.name << std::endl;
+    //     std::cout << "\t\tcommand_interface.data_type[接口数据类型]: " << command_interface.data_type << std::endl;
+    //     std::cout << "\t\tcommand_interface.size[接口大小]: " << command_interface.size << std::endl;
+    //   }
+    //   std::cout << "\tjoint.state_interfaces[状态接口]: " << std::endl;
+    //   for (const auto & state_interface : joint.state_interfaces)
+    //   {
+    //     std::cout << "\t\tstate_interface.name[接口名称]: " << state_interface.name << std::endl;
+    //     std::cout << "\t\tstate_interface.data_type[接口数据类型]: " << state_interface.data_type << std::endl;
+    //     std::cout << "\t\tstate_interface.size[接口大小]: " << state_interface.size << std::endl;
+    //   }
+    // }
+
+    // 打印所有参数
+    // std::cout << "info_.hardware_parameters[硬件参数]: " << std::endl;
+    // for (const auto & param : info_.hardware_parameters)
+    // {
+    //   std::cout << "\t" << param.first << ": " << param.second << std::endl;
+    // }
+    hw_start_sec_ = stod(info_.hardware_parameters["hw_start_sec"]);
+    hw_stop_sec_ = stod(info_.hardware_parameters["hw_stop_sec"]);
+    hw_slowdown_ = stod(info_.hardware_parameters["hw_slowdown"]);
+
+    // std::cout << "hw_start_sec_: " << hw_start_sec_ << std::endl;
+    // std::cout << "hw_stop_sec_: " << hw_stop_sec_ << std::endl;
+    // std::cout << "hw_slowdown_: " << hw_slowdown_ << std::endl;
+
+    hw_states_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
+    hw_commands_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
+
+    std::cout << "hw_states_.size()[状态接口数量]: " << hw_states_.size() << std::endl;
+    std::cout << "hw_commands_.size()[命令接口数量]: " << hw_commands_.size() << std::endl;
+    std::cout << "hw_states_[0]: " << hw_states_[0] << std::endl;
+    std::cout << "hw_commands_[0]: " << hw_commands_[0] << std::endl;
+
     std::cout << "===== 初始化硬件接口结束 =====" << std::endl;
-
-
     return hardware_interface::CallbackReturn::SUCCESS;
   }
 
