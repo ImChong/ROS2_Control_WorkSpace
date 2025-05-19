@@ -34,7 +34,7 @@ ament_target_dependencies(
 )
 
 # Export hardware plugins ##############################################################################################
-pluginlib_export_plugin_description_file(hardware_interface ros2_control_demo_example_1_hardware.xml)
+pluginlib_export_plugin_description_file(hardware_interface hardware/rrbot_hardware_plugin.xml)
 
 # INSTALL ##############################################################################################################
 install(
