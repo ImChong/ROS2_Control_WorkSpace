@@ -3,8 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/src/ros2_control_demos/example_1_hardware/hardware/include/**",
-                "${workspaceFolder}/src/ros2_control_demos/example_7/**",
+                "${workspaceFolder}/src/ros2_control_demos/example_1_hardware/**",
+                "${workspaceFolder}/src/ros2_control_demos/example_7_practice/**",
                 "${workspaceFolder}/install/**",
                 "/opt/ros/humble/**",
                 "/usr/include/gazebo-11",

@@ -6,7 +6,7 @@
     <ros2_control name="${name}" type="system">
 
       <hardware>
-        <plugin>r6bot_hardware/R6BotHardware</plugin>
+        <plugin>r6bot_hardware_namespace/R6BotHardware</plugin>
       </hardware>
 
       <joint name="joint_1">
