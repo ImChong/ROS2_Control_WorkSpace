@@ -37,7 +37,7 @@ rm -rf build/ install/ log/
 
 - [x] [exmaple_1 [official]](/src/ros2_control_demos/example_1/README.md)
 - [x] [example_1_display_urdf](/src/ros2_control_demos/example_1_display_urdf/README.md)
-- [ ] [example_1_hardware](/src/ros2_control_demos/example_1_hardware/README.md)
+- [x] [example_1_hardware](/src/ros2_control_demos/example_1_hardware/README.md)
 
 ### 1.2.2. example_2 - DiffBot
 
