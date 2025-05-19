@@ -36,17 +36,22 @@ public:
   rclcpp::Clock::SharedPtr get_clock() const { return clock_; }
 
 private:
-  // Parameters for the RRBot simulation
+  // 硬件信息
+  hardware_interface::HardwareInfo hardware_info_;
+
+  // 硬件参数
   double hw_start_sec_;
   double hw_stop_sec_;
   double hw_slowdown_;
 
-  // Objects for logging
+  // 日志
   std::shared_ptr<rclcpp::Logger> logger_;
+  // 时钟
   rclcpp::Clock::SharedPtr clock_;
 
-  // Store the command for the simulated robot
+  // 状态
   std::vector<double> hw_states_;
+  // 命令
   std::vector<double> hw_commands_;
 };
 
