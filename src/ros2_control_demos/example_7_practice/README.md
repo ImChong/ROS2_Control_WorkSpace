@@ -1,6 +1,6 @@
-# 1. example 7 practice
+# 1. example 7 practice (r6bot_control_system)
 
-- [1. example 7 practice](#1-example-7-practice)
+- [1. example 7 practice (r6bot\_control\_system)](#1-example-7-practice-r6bot_control_system)
   - [1.1. 创建 ros2 包：r6bot\_control\_system](#11-创建-ros2-包r6bot_control_system)
   - [1.2. 推荐的机器人开发顺序](#12-推荐的机器人开发顺序)
   - [1.3. 文件夹结构](#13-文件夹结构)
