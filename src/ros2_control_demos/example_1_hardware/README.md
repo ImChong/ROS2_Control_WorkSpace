@@ -2,14 +2,14 @@
 
 - [1. example 1 hardware](#1-example-1-hardware)
   - [1.1. 创建 ros2 包：ros2\_control\_demo\_example\_1\_hardware](#11-创建-ros2-包ros2_control_demo_example_1_hardware)
-  - [文件夹结构](#文件夹结构)
-  - [1.2. 编译 ros2\_control\_demo\_example\_1\_hardware](#12-编译-ros2_control_demo_example_1_hardware)
-  - [1.3. 运行 ros2\_control\_demo\_example\_1\_hardware](#13-运行-ros2_control_demo_example_1_hardware)
-    - [1.3.1. view\_robot.launch.py 查看RRBot机器人URDF](#131-view_robotlaunchpy-查看rrbot机器人urdf)
-    - [1.3.2. rrbot.launch.py 运行RRBot机器人硬件以及控制器](#132-rrbotlaunchpy-运行rrbot机器人硬件以及控制器)
-    - [1.3.3. 一键启动所有运行代码](#133-一键启动所有运行代码)
-  - [1.4. 查看机器人控制器相关信息](#14-查看机器人控制器相关信息)
-  - [1.5. 发送位置测试指令](#15-发送位置测试指令)
+  - [1.2. 文件夹结构](#12-文件夹结构)
+  - [1.3. 编译 ros2\_control\_demo\_example\_1\_hardware](#13-编译-ros2_control_demo_example_1_hardware)
+  - [1.4. 运行 ros2\_control\_demo\_example\_1\_hardware](#14-运行-ros2_control_demo_example_1_hardware)
+    - [1.4.1. view\_robot.launch.py 查看RRBot机器人URDF](#141-view_robotlaunchpy-查看rrbot机器人urdf)
+    - [1.4.2. rrbot.launch.py 运行RRBot机器人硬件以及控制器](#142-rrbotlaunchpy-运行rrbot机器人硬件以及控制器)
+    - [1.4.3. 一键启动所有运行代码](#143-一键启动所有运行代码)
+  - [1.5. 查看机器人控制器相关信息](#15-查看机器人控制器相关信息)
+  - [1.6. 发送位置测试指令](#16-发送位置测试指令)
 
 此包的目的是：
 
@@ -23,7 +23,7 @@
 ros2 pkg create example_1_hardware --build-type ament_cmake --dependencies rclcpp
 ```
 
-## 文件夹结构
+## 1.2. 文件夹结构
 
 ```bash
 tree src/ros2_control_demos/example_1_hardware/ -L 4
@@ -57,35 +57,35 @@ src/ros2_control_demos/example_1_hardware/
 └── run.sh                           # 一键启动脚本
 ```
 
-## 1.2. 编译 ros2_control_demo_example_1_hardware
+## 1.3. 编译 ros2_control_demo_example_1_hardware
 
 ```bash
 colcon build --packages-select ros2_control_demo_example_1_hardware
 ```
 
-## 1.3. 运行 ros2_control_demo_example_1_hardware
+## 1.4. 运行 ros2_control_demo_example_1_hardware
 
-### 1.3.1. view_robot.launch.py 查看RRBot机器人URDF
+### 1.4.1. view_robot.launch.py 查看RRBot机器人URDF
 
 ```bash
 source install/setup.bash
 ros2 launch ros2_control_demo_example_1_hardware view_robot.launch.py
 ```
 
-### 1.3.2. rrbot.launch.py 运行RRBot机器人硬件以及控制器
+### 1.4.2. rrbot.launch.py 运行RRBot机器人硬件以及控制器
 
 ```bash
 source install/setup.bash
 ros2 launch ros2_control_demo_example_1_hardware rrbot.launch.py
 ```
 
-### 1.3.3. 一键启动所有运行代码
+### 1.4.3. 一键启动所有运行代码
 
 ```bash
 ./src/ros2_control_demos/example_1_hardware/run.sh
 ```
 
-## 1.4. 查看机器人控制器相关信息
+## 1.5. 查看机器人控制器相关信息
 
 查看当前加载的控制器列表:
 
@@ -113,7 +113,7 @@ ros2 control list_hardware_interfaces
 ros2 run rqt_controller_manager rqt_controller_manager
 ```
 
-## 1.5. 发送位置测试指令
+## 1.6. 发送位置测试指令
 
 ```bash
 ros2 topic pub --once /forward_position_controller/commands std_msgs/msg/Float64MultiArray "data:
