@@ -19,17 +19,17 @@ endforeach()
 
 ## COMPILE #############################################################################################################
 add_library(
-  ros2_control_demo_example_1_hardware
+  ${PROJECT_NAME}
   SHARED
   hardware/rrbot.cpp
 )
-target_compile_features(ros2_control_demo_example_1_hardware PUBLIC cxx_std_17)
-target_include_directories(ros2_control_demo_example_1_hardware PUBLIC
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+target_include_directories(${PROJECT_NAME} PUBLIC
 $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/hardware/include>
 $<INSTALL_INTERFACE:include/hardware>
 )
 ament_target_dependencies(
-  ros2_control_demo_example_1_hardware PUBLIC
+  ${PROJECT_NAME} PUBLIC
   ${THIS_PACKAGE_INCLUDE_DEPENDS}
 )
 
@@ -39,22 +39,22 @@ pluginlib_export_plugin_description_file(hardware_interface hardware/rrbot_hardw
 # INSTALL ##############################################################################################################
 install(
   DIRECTORY description/
-  DESTINATION share/ros2_control_demo_example_1_hardware/description
+  DESTINATION share/${PROJECT_NAME}/description
 )
 install(
   DIRECTORY launch/
-  DESTINATION share/ros2_control_demo_example_1_hardware/launch
+  DESTINATION share/${PROJECT_NAME}/launch
 )
 install(
   DIRECTORY controller/
-  DESTINATION share/ros2_control_demo_example_1_hardware/controller
+  DESTINATION share/${PROJECT_NAME}/controller
 )
 install(
   DIRECTORY hardware/include/
   DESTINATION include/hardware
 )
-install(TARGETS ros2_control_demo_example_1_hardware
-  EXPORT export_ros2_control_demo_example_1_hardware
+install(TARGETS ${PROJECT_NAME}
+  EXPORT ${PROJECT_NAME}
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
@@ -74,6 +74,6 @@ if(BUILD_TESTING)
 endif()
 
 # EXPORTS ##############################################################################################################
-ament_export_targets(export_ros2_control_demo_example_1_hardware HAS_LIBRARY_TARGET)
+ament_export_targets(${PROJECT_NAME} HAS_LIBRARY_TARGET)
 ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
 ament_package()
