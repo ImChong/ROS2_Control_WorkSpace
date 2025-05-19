@@ -21,6 +21,17 @@ namespace rrbot_hardware
     {
         return hardware_interface::CallbackReturn::ERROR;
     }
+
+    logger_ = std::make_shared<rclcpp::Logger>(rclcpp::get_logger("RRBot 硬件消息"));  // 初始化日志
+    clock_ = std::make_shared<rclcpp::Clock>(rclcpp::Clock());  // 初始化时钟
+
+    // 打印所有info
+    std::cout << "info_.name: " << info_.name << std::endl;
+    std::cout << "info_.type: " << info_.type << std::endl;
+    std::cout << "info_.hardware_class_type: " << info_.hardware_class_type << std::endl;
+    std::cout << "info_.joints.size(): " << info_.joints.size() << std::endl;
+
+
     return hardware_interface::CallbackReturn::SUCCESS;
   }
 

@@ -6,6 +6,7 @@
   - [1.3. 运行 ros2\_control\_demo\_example\_1\_hardware](#13-运行-ros2_control_demo_example_1_hardware)
     - [1.3.1. view\_robot.launch.py 查看RRBot机器人URDF](#131-view_robotlaunchpy-查看rrbot机器人urdf)
     - [1.3.2. rrbot.launch.py 运行RRBot机器人硬件以及控制器](#132-rrbotlaunchpy-运行rrbot机器人硬件以及控制器)
+    - [1.3.3. 一键启动所有运行代码](#133-一键启动所有运行代码)
 
 此包的目的是：
 
@@ -39,4 +40,10 @@ ros2 launch ros2_control_demo_example_1_hardware view_robot.launch.py
 ```bash
 source install/setup.bash
 ros2 launch ros2_control_demo_example_1_hardware rrbot.launch.py
+```
+
+### 1.3.3. 一键启动所有运行代码
+
+```bash
+./src/ros2_control_demos/example_1_hardware/run.sh
 ```
