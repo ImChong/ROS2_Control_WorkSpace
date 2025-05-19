@@ -71,10 +71,19 @@ namespace rrbot_hardware
     hw_states_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
     hw_commands_.resize(info_.joints.size(), std::numeric_limits<double>::quiet_NaN());
 
-    std::cout << "hw_states_.size()[状态接口数量]: " << hw_states_.size() << std::endl;
-    std::cout << "hw_commands_.size()[命令接口数量]: " << hw_commands_.size() << std::endl;
-    std::cout << "hw_states_[0]: " << hw_states_[0] << std::endl;
-    std::cout << "hw_commands_[0]: " << hw_commands_[0] << std::endl;
+    // std::cout << "hw_states_.size()[状态接口数量]: " << hw_states_.size() << std::endl;
+    std::cout << "hw_states_: [";
+    for (size_t i = 0; i < hw_states_.size(); ++i) {
+      std::cout << hw_states_[i] << (i < hw_states_.size() - 1 ? ", " : "");
+    }
+    std::cout << "]" << std::endl;
+
+    // std::cout << "hw_commands_.size()[命令接口数量]: " << hw_commands_.size() << std::endl;
+    std::cout << "hw_commands_: [";
+    for (size_t i = 0; i < hw_commands_.size(); ++i) {
+      std::cout << hw_commands_[i] << (i < hw_commands_.size() - 1 ? ", " : "");
+    }
+    std::cout << "]" << std::endl;
 
     std::cout << "===== 初始化硬件接口结束 =====" << std::endl;
     return hardware_interface::CallbackReturn::SUCCESS;
