@@ -3,6 +3,7 @@
 - [1. example 7 practice (r6bot\_control\_system)](#1-example-7-practice-r6bot_control_system)
   - [1.1. 创建 ros2 包：r6bot\_control\_system](#11-创建-ros2-包r6bot_control_system)
   - [1.2. 推荐的机器人开发顺序](#12-推荐的机器人开发顺序)
+  - [xacro 转 URDF](#xacro-转-urdf)
   - [1.3. 文件夹结构](#13-文件夹结构)
   - [1.4. 编译 r6bot\_control\_system](#14-编译-r6bot_control_system)
   - [1.5. 运行 r6bot\_control\_system](#15-运行-r6bot_control_system)
@@ -32,6 +33,13 @@ ros2 pkg create example_7_practice --build-type ament_cmake --dependencies rclcp
 - [ ] 5. 轨迹生成 - 创建测试命令或轨迹
 - [ ] 6. 完善和优化 - 迭代改进所有组件
 
+## xacro 转 URDF
+
+```bash
+source install/setup.bash
+xacro src/ros2_control_demos/example_7_practice/description/urdf/r6bot.urdf.xacro > src/ros2_control_demos/example_7_practice/description/urdf/r6bot.urdf
+```
+
 ## 1.3. 文件夹结构
 
 ```bash
@@ -40,51 +48,54 @@ tree src/ros2_control_demos/example_7_practice/ -L 4
 
 ```bash
 src/ros2_control_demos/example_7_practice/
-├── CMakeLists.txt                    # CMake构建配置文件
-├── controller                        # 控制器目录
-│   ├── include                      # 控制器头文件目录
-│   │   └── r6bot_controller.hpp     # R6Bot控制器头文件
-│   ├── r6bot_controller.cpp         # R6Bot控制器实现文件
-│   └── r6bot_controller.yaml        # R6Bot控制器配置文件
-├── description                       # 机器人描述文件目录
-│   ├── meshes                       # 机器人模型文件目录
-│   │   ├── collision               # 碰撞模型目录
-│   │   │   ├── link_0.stl         # 基座碰撞模型
-│   │   │   ├── link_1.stl         # 第一关节碰撞模型
-│   │   │   ├── link_2.stl         # 第二关节碰撞模型
-│   │   │   ├── link_3.stl         # 第三关节碰撞模型
-│   │   │   ├── link_4.stl         # 第四关节碰撞模型
-│   │   │   ├── link_5.stl         # 第五关节碰撞模型
-│   │   │   └── link_6.stl         # 第六关节碰撞模型
-│   │   └── visual                  # 视觉模型目录
-│   │       ├── link_0.dae         # 基座视觉模型
-│   │       ├── link_1.dae         # 第一关节视觉模型
-│   │       ├── link_2.dae         # 第二关节视觉模型
-│   │       ├── link_3.dae         # 第三关节视觉模型
-│   │       ├── link_4.dae         # 第四关节视觉模型
-│   │       ├── link_5.dae         # 第五关节视觉模型
-│   │       └── link_6.dae         # 第六关节视觉模型
-│   ├── rviz                        # RViz配置目录
-│   │   └── view_robot.rviz        # RViz配置文件
-│   ├── srdf                        # SRDF文件目录
-│   │   └── r6bot.srdf             # R6Bot机器人SRDF文件
-│   └── urdf                        # URDF文件目录
-│       ├── inc                     # URDF包含文件目录
-│       │   └── create_link.xacro   # 创建机器人连杆的宏文件
-│       └── r6bot_description.urdf.xacro  # R6Bot机器人URDF主文件
-├── hardware                         # 硬件接口目录
-│   ├── include                     # 硬件接口头文件目录
-│   │   └── r6bot_hardware.hpp     # R6Bot硬件接口头文件
-│   └── r6bot_hardware.cpp         # R6Bot硬件接口实现文件
-├── launch                          # 启动文件目录
-│   ├── r6bot_control_system.launch.py  # R6Bot控制系统启动文件
-│   └── view_r6bot.launch.py       # R6Bot可视化启动文件
-├── package.xml                     # ROS2包配置文件
-├── r6bot_control_system_plugins.xml  # R6Bot插件描述文件
-├── README.md                       # 项目说明文档
-├── run.sh                          # 一键启动脚本
-└── trajectory_generator            # 轨迹生成器目录
-    └── main.cpp                    # 轨迹生成器主程序
+├── CMakeLists.txt  # 编译文件
+├── controller
+│   ├── include
+│   │   └── r6bot_controller.hpp    # 控制器头文件
+│   ├── r6bot_controller.cpp        # 控制器源文件
+│   └── r6bot_controller.yaml       # 控制器配置文件
+├── description
+│   ├── meshes                     # 模型文件
+│   │   ├── collision              # 碰撞文件
+│   │   │   ├── link_0.stl
+│   │   │   ├── link_1.stl
+│   │   │   ├── link_2.stl
+│   │   │   ├── link_3.stl
+│   │   │   ├── link_4.stl
+│   │   │   ├── link_5.stl
+│   │   │   └── link_6.stl
+│   │   └── visual                 # 可视化文件
+│   │       ├── link_0.dae
+│   │       ├── link_1.dae
+│   │       ├── link_2.dae
+│   │       ├── link_3.dae
+│   │       ├── link_4.dae
+│   │       ├── link_5.dae
+│   │       └── link_6.dae
+│   ├── rviz
+│   │   └── view_r6bot.rviz        # rviz 配置文件
+│   ├── srdf
+│   │   └── r6bot.srdf             # srdf 文件
+│   └── urdf
+│       ├── inc
+│       │   └── create_link.xacro
+│       ├── r6bot_description.urdf.xacro
+│       ├── r6bot.ros2_control.xacro
+│       ├── r6bot.urdf               # urdf 文件
+│       └── r6bot.urdf.xacro         # xacro 文件
+├── hardware
+│   ├── include
+│   │   └── r6bot_hardware.hpp      # 硬件头文件
+│   └── r6bot_hardware.cpp         # 硬件源文件
+├── launch
+│   ├── r6bot_control_system.launch.py # 控制器启动文件
+│   └── view_r6bot.launch.py           # joint_state_publisher_gui 启动文件
+├── package.xml                      # 包配置文件
+├── r6bot_control_system_plugins.xml  # 插件配置文件
+├── README.md                        # 说明文件
+├── run.sh                           # 运行脚本
+└── trajectory_generator             # 轨迹生成器
+    └── main.cpp                     # 轨迹生成器源文件
 ```
 
 ## 1.4. 编译 r6bot_control_system
