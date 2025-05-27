@@ -16,14 +16,16 @@ void print_vector_double(const std::vector<double> & vec)
     std::cout << "]" << std::endl;
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 命名空间
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 namespace r6bot_hardware_namespace
 {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 初始化
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-CallbackReturn R6BotHardware::on_init(const hardware_interface::HardwareInfo & info) {
+hardware_interface::CallbackReturn R6BotHardware::on_init(const hardware_interface::HardwareInfo & info) {
     if (hardware_interface::SystemInterface::on_init(info) != CallbackReturn::SUCCESS)
     {
         return CallbackReturn::ERROR;
@@ -33,24 +35,29 @@ CallbackReturn R6BotHardware::on_init(const hardware_interface::HardwareInfo & i
     // 获取硬件信息
     hardware_info_ = info;
 
-    joint_position_.assign(6, 0);
-    joint_velocities_.assign(6, 0);
+    // 初始化状态
+    joint_position_states_.assign(6, 0);
+    joint_velocities_states_.assign(6, 0);
+    ft_states_.assign(6, 0);
+
+    // 初始化命令
     joint_position_command_.assign(6, 0);
     joint_velocities_command_.assign(6, 0);
-
-    ft_states_.assign(6, 0);
     ft_command_.assign(6, 0);
 
-    std::cout << "joint_position_: ";
-    print_vector_double(joint_position_);
-    std::cout << "joint_velocities_: ";
-    print_vector_double(joint_velocities_);
+    // 打印状态
+    std::cout << "joint_position_states_: ";
+    print_vector_double(joint_position_states_);
+    std::cout << "joint_velocities_states_: ";
+    print_vector_double(joint_velocities_states_);
+    std::cout << "ft_states_: ";
+    print_vector_double(ft_states_);
+
+    // 打印命令
     std::cout << "joint_position_command_: ";
     print_vector_double(joint_position_command_);
     std::cout << "joint_velocities_command_: ";
     print_vector_double(joint_velocities_command_);
-    std::cout << "ft_states_: ";
-    print_vector_double(ft_states_);
     std::cout << "ft_command_: ";
     print_vector_double(ft_command_);
 
@@ -87,29 +94,32 @@ std::vector<hardware_interface::CommandInterface> R6BotHardware::export_command_
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 读取
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-return_type R6BotHardware::read(const rclcpp::Time & time, const rclcpp::Duration & period)
+hardware_interface::return_type R6BotHardware::read(const rclcpp::Time & time, const rclcpp::Duration & period)
 {
     std::cout << "===== 读取开始 =====" << std::endl;
     (void)time;
     (void)period;
     std::cout << "===== 读取完成 =====" << std::endl;
-    return return_type::OK;
+    return hardware_interface::return_type::OK;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 写入
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-return_type R6BotHardware::write(const rclcpp::Time & time, const rclcpp::Duration & period)
+hardware_interface::return_type R6BotHardware::write(const rclcpp::Time & time, const rclcpp::Duration & period)
 {
     std::cout << "===== 写入开始 =====" << std::endl;
     (void)time;
     (void)period;
     std::cout << "===== 写入完成 =====" << std::endl;
-    return return_type::OK;
+    return hardware_interface::return_type::OK;
 }
 
 }   // namespace r6bot_hardware_namespace
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 插件注册
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "pluginlib/class_list_macros.hpp"
 
 PLUGINLIB_EXPORT_CLASS(r6bot_hardware_namespace::R6BotHardware, hardware_interface::SystemInterface)
