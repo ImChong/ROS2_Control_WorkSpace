@@ -36,6 +36,7 @@ ros2 pkg create example_7_practice --build-type ament_cmake --dependencies rclcp
 ## xacro 转 URDF
 
 ```bash
+cd path/to/ros2_ctrl_ws
 source install/setup.bash
 xacro src/ros2_control_demos/example_7_practice/description/urdf/r6bot.urdf.xacro > src/ros2_control_demos/example_7_practice/description/urdf/r6bot.urdf
 ```
@@ -101,6 +102,7 @@ src/ros2_control_demos/example_7_practice/
 ## 1.4. 编译 r6bot_control_system
 
 ```bash
+cd path/to/ros2_ctrl_ws
 colcon build --packages-select r6bot_control_system
 ```
 
@@ -109,6 +111,7 @@ colcon build --packages-select r6bot_control_system
 ### 1.5.1. view_r6bot.launch.py 查看 r6bot 机器人 URDF
 
 ```bash
+cd path/to/ros2_ctrl_ws
 source install/setup.bash
 ros2 launch r6bot_control_system view_r6bot.launch.py
 ```
@@ -116,5 +119,6 @@ ros2 launch r6bot_control_system view_r6bot.launch.py
 ### 1.5.2. 一键启动
 
 ```bash
+cd path/to/ros2_ctrl_ws
 ./src/ros2_control_demos/example_7_practice/run.sh
 ```
