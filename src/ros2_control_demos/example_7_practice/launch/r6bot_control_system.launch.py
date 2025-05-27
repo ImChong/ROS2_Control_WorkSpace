@@ -1,31 +1,12 @@
+from launch import LaunchDescription
+from launch.actions import RegisterEventHandler
+from launch.event_handlers import OnProcessExit
 from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
 
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
-
-    ####################################################################################################################
-    # 获取控制器节点
-    ####################################################################################################################
-    # 获取控制器配置文件
-    robot_controllers_config_file = PathJoinSubstitution(
-        [
-            FindPackageShare("r6bot_control_system"),
-            "r6bot_controller.yaml",
-        ]
-    )
-
-    # 启动控制器节点
-    control_node = Node(
-        package="controller_manager",
-        executable="ros2_control_node",
-        parameters=[robot_controllers_config_file],
-        remappings=[
-            ("~/robot_description", "/robot_description"),
-        ],
-        output="both",
-    )
 
     ####################################################################################################################
     # 获取机器人状态发布节点
@@ -77,4 +58,50 @@ def generate_launch_description():
         arguments=["-d", rviz_config_file],
     )
 
-    return
+    ####################################################################################################################
+    # 获取控制器节点
+    ####################################################################################################################
+    # 获取控制器配置文件
+    robot_controllers_config_file = PathJoinSubstitution(
+        [
+            FindPackageShare("r6bot_control_system"),
+            "r6bot_controller.yaml",
+        ]
+    )
+
+    # 启动控制器节点
+    control_node = Node(
+        package="controller_manager",
+        executable="ros2_control_node",
+        parameters=[robot_controllers_config_file],
+        remappings=[
+            ("~/robot_description", "/robot_description"),
+        ],
+        output="both",
+    )
+
+    # 启动关节状态广播器节点
+    joint_state_broadcaster_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
+    )
+
+    delay_rviz_after_joint_state_broadcaster_spawner = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=joint_state_broadcaster_spawner,
+            on_exit=[rviz_node],
+        )
+    )
+
+    ####################################################################################################################
+    # 准备启动节点
+    ####################################################################################################################
+    nodes = [
+        robot_state_pub_node,
+        control_node,
+        joint_state_broadcaster_spawner,
+        delay_rviz_after_joint_state_broadcaster_spawner,
+    ]
+
+    return LaunchDescription(nodes)
