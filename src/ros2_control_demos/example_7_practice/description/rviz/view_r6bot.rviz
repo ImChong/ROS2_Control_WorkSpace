@@ -77,7 +77,7 @@ Visualization Manager:
           Value: true
         world:
           Value: true
-      Marker Scale: 0.5
+      Marker Scale: 0.25
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -173,7 +173,7 @@ Visualization Manager:
   Global Options:
     Background Color: 119; 118; 123
     Fixed Frame: base_link
-    Frame Rate: 30
+    Frame Rate: 60
   Name: root
   Tools:
     - Class: rviz_default_plugins/Interact
