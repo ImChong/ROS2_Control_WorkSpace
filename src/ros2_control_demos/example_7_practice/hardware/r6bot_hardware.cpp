@@ -11,7 +11,7 @@ void print_vector_double(const std::vector<double> & vec)
   std::cout << "[ ";
   for (const auto & item : vec)
   {
-      std::cout << item << " ";
+    std::cout << item << " ";
   }
   std::cout << "]" << std::endl;
 }
@@ -28,7 +28,7 @@ namespace r6bot_hardware_namespace
 hardware_interface::CallbackReturn R6BotHardware::on_init(const hardware_interface::HardwareInfo & info) {
   if (hardware_interface::SystemInterface::on_init(info) != CallbackReturn::SUCCESS)
   {
-      return CallbackReturn::ERROR;
+    return CallbackReturn::ERROR;
   }
   std::cout << "===== 初始化开始 =====" << std::endl;
 
@@ -65,18 +65,19 @@ hardware_interface::CallbackReturn R6BotHardware::on_init(const hardware_interfa
   for (const auto & joint : hardware_info_.joints)
   {
     // 打印状态接口
-    std::cout << "joint " << joint.name << " has state interfaces: " << std::endl;
+    std::cout << joint.name << ":" << std::endl;
+    std::cout << "\t" << "state interfaces: " << std::endl;
     for (const auto & interface : joint.state_interfaces)
     {
-      std::cout << "\t" << interface.name << std::endl;
-      joint_interfaces[interface.name].push_back(joint.name);
+      std::cout << "\t\t" << interface.name << std::endl;
+      // joint_interfaces[interface.name].push_back(joint.name);
     }
     // 打印命令接口
-    std::cout << "joint " << joint.name << " has command interfaces: " << std::endl;
+    std::cout << "\t" << "command interfaces: " << std::endl;
     for (const auto & interface : joint.command_interfaces)
     {
-      std::cout << "\t" << interface.name << std::endl;
-      joint_interfaces[interface.name].push_back(joint.name);
+      std::cout << "\t\t" << interface.name << std::endl;
+      // joint_interfaces[interface.name].push_back(joint.name);
     }
   }
 
