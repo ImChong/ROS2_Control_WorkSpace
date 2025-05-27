@@ -28,7 +28,19 @@ ros2 pkg create example_7_practice --build-type ament_cmake --dependencies rclcp
 
 - [x] 1. URDF/机器人描述 - 首先定义机器人结构和接口
 - [x] 2. RViz配置 - 设置可视化，以便在开发过程中验证
+  - 所需最少文件：
+    - 机器人描述文件：```r6bot.urdf.xacro```
+    - rviz 配置文件：```view_r6bot.rviz```
+    - launch 文件：```view_r6bot.launch.py```
 - [ ] 3. 基本硬件接口 - 实现最小功能的硬件接口
+  - 所需最少文件：
+    - 机器人描述文件：```r6bot.urdf.xacro```
+    - rviz 配置文件：```view_r6bot.rviz```
+    - 硬件接口文件：```r6bot_hardware.hpp```
+    - 硬件源文件：```r6bot_hardware.cpp```
+    - yaml 文件：```r6bot_controller.yaml```
+    - 插件配置文件：```r6bot_control_system_plugins.xml```
+    - launch 文件：```r6bot_control_system.launch.py```
 - [ ] 4. 控制器实现 - 开发控制算法
 - [ ] 5. 轨迹生成 - 创建测试命令或轨迹
 - [ ] 6. 完善和优化 - 迭代改进所有组件
