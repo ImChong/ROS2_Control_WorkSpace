@@ -11,10 +11,13 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name="xacro")]),
             " ",
             PathJoinSubstitution(
-                [FindPackageShare("r6bot_control_system"), "description", "urdf", "r6bot.urdf.xacro"]
+                [
+                    FindPackageShare("r6bot_control_system"),
+                    "description",
+                    "urdf",
+                    "r6bot.urdf.xacro",
+                ]
             ),
-            " ",
-            "prefix:=\"\"",
         ]
     )
     robot_description = {"robot_description": robot_description_content}
