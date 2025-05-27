@@ -20,7 +20,7 @@ endforeach()
 # INSTALL
 install(
   DIRECTORY description/launch description/rviz description/urdf
-  DESTINATION share/ros2_control_demos_example_1_display_urdf
+  DESTINATION share/ros2_control_demo_example_1_display_urdf
 )
 
 # PACKAGE
