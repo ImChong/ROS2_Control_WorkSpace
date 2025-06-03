@@ -79,7 +79,7 @@ hardware_interface::CallbackReturn R6BotHardware::on_init(const hardware_interfa
     }
   }
 
-  // 打印关节接口
+  // 获取关节接口
   for (const auto & joint : hardware_info_.joints)
   {
     for (const auto & interface : joint.state_interfaces)
@@ -182,8 +182,36 @@ std::vector<hardware_interface::CommandInterface> R6BotHardware::export_command_
 hardware_interface::return_type R6BotHardware::read(const rclcpp::Time & time, const rclcpp::Duration & period)
 {
   std::cout << "===== 读取开始 =====" << std::endl;
-  (void)time;
-  (void)period;
+  std::cout << "time: " << std::fixed << std::setprecision(3) << time.seconds() << std::endl;
+  std::cout << "period: " << std::fixed << std::setprecision(3) << period.seconds() << std::endl;
+
+  // 读取关节速度命令
+  for (auto i = 0ul; i < joint_velocities_command_.size(); i++)
+  {
+    joint_velocities_states_[i] = joint_velocities_command_[i];
+    joint_position_states_[i] += joint_velocities_command_[i] * period.seconds();
+  }
+
+  // 读取关节位置命令
+  for (auto i = 0ul; i < joint_position_command_.size(); i++)
+  {
+    joint_position_states_[i] = joint_position_command_[i];
+  }
+
+  // 读取力矩命令
+  for (auto i = 0ul; i < ft_command_.size(); i++)
+  {
+    ft_states_[i] = ft_command_[i];
+  }
+
+  // 打印状态
+  std::cout << "joint_position_states_: ";
+  print_vector_double(joint_position_states_);
+  std::cout << "joint_velocities_states_: ";
+  print_vector_double(joint_velocities_states_);
+  std::cout << "ft_states_: ";
+  print_vector_double(ft_states_);
+
   std::cout << "===== 读取完成 =====" << std::endl;
   return hardware_interface::return_type::OK;
 }
