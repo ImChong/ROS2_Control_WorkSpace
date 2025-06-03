@@ -1,6 +1,7 @@
 #include "r6bot_hardware.hpp"
 #include <rclcpp/rclcpp.hpp>
 #include <vector>
+#include <iostream>
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -185,17 +186,17 @@ hardware_interface::return_type R6BotHardware::read(const rclcpp::Time & time, c
   std::cout << "time: " << std::fixed << std::setprecision(3) << time.seconds() << std::endl;
   std::cout << "period: " << std::fixed << std::setprecision(3) << period.seconds() << std::endl;
 
+  // 读取关节位置命令
+  // for (auto i = 0ul; i < joint_position_command_.size(); i++)
+  // {
+  //   joint_position_states_[i] = joint_position_command_[i];
+  // }
+
   // 读取关节速度命令
   for (auto i = 0ul; i < joint_velocities_command_.size(); i++)
   {
     joint_velocities_states_[i] = joint_velocities_command_[i];
     joint_position_states_[i] += joint_velocities_command_[i] * period.seconds();
-  }
-
-  // 读取关节位置命令
-  for (auto i = 0ul; i < joint_position_command_.size(); i++)
-  {
-    joint_position_states_[i] = joint_position_command_[i];
   }
 
   // 读取力矩命令
@@ -224,6 +225,14 @@ hardware_interface::return_type R6BotHardware::write(const rclcpp::Time & time, 
   std::cout << "===== 写入开始 =====" << std::endl;
   (void)time;
   (void)period;
+
+  std::cout << "joint_position_command_: ";
+  print_vector_double(joint_position_command_);
+  std::cout << "joint_velocities_command_: ";
+  print_vector_double(joint_velocities_command_);
+  std::cout << "ft_command_: ";
+  print_vector_double(ft_command_);
+
   std::cout << "===== 写入完成 =====" << std::endl;
   return hardware_interface::return_type::OK;
 }

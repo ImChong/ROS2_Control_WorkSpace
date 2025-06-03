@@ -129,12 +129,76 @@ source install/setup.bash
 ros2 launch r6bot_control_system view_r6bot.launch.py
 ```
 
+通过 joint_state_publisher_gui 可以控制 r6bot 机器人关节角度。
+
 ### 1.5.2. r6bot_control_system.launch.py 启动控制器
 
 ```bash
 cd path/to/ros2_ctrl_ws
 source install/setup.bash
 ros2 launch r6bot_control_system r6bot_control_system.launch.py
+```
+
+位置控制器配置:
+
+```yaml
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    forward_position_controller:
+      type: forward_command_controller/ForwardCommandController
+
+forward_position_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+      - joint_6
+    interface_name: position
+```
+
+forward_position_controller 机器人交互指令:
+
+```bash
+ros2 topic pub --once /forward_position_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
+```
+
+速度控制器配置:
+
+```yaml
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    forward_velocity_controller:
+      type: forward_command_controller/ForwardCommandController
+
+forward_velocity_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+      - joint_6
+    interface_name: velocity
+```
+
+forward_velocity_controller 机器人交互指令:
+
+```bash
+ros2 topic pub --once /forward_velocity_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
 ```
 
 ### 1.5.3. 一键启动
