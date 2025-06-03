@@ -116,6 +116,28 @@ std::vector<hardware_interface::StateInterface> R6BotHardware::export_state_inte
   std::cout << "===== 导出状态接口开始 =====" << std::endl;
   std::vector<hardware_interface::StateInterface> state_interfaces;
 
+  // 导出位置接口
+  int ind = 0;
+  for (const auto & joint_name : joint_interfaces["position"])
+  {
+    state_interfaces.emplace_back(joint_name, "position", &joint_position_states_[ind++]);
+  }
+
+  // 导出速度接口
+  ind = 0;
+  for (const auto & joint_name : joint_interfaces["velocity"])
+  {
+    state_interfaces.emplace_back(joint_name, "velocity", &joint_velocities_states_[ind++]);
+  }
+
+  // 导出力矩接口
+  state_interfaces.emplace_back("tcp_fts_sensor", "force.x", &ft_states_[0]);
+  state_interfaces.emplace_back("tcp_fts_sensor", "force.y", &ft_states_[1]);
+  state_interfaces.emplace_back("tcp_fts_sensor", "force.z", &ft_states_[2]);
+  state_interfaces.emplace_back("tcp_fts_sensor", "torque.x", &ft_states_[3]);
+  state_interfaces.emplace_back("tcp_fts_sensor", "torque.y", &ft_states_[4]);
+  state_interfaces.emplace_back("tcp_fts_sensor", "torque.z", &ft_states_[5]);
+
   std::cout << "===== 导出状态接口完成 =====" << std::endl;
   return state_interfaces;
 }
