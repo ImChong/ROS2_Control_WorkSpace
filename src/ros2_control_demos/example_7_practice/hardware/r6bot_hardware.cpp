@@ -70,19 +70,42 @@ hardware_interface::CallbackReturn R6BotHardware::on_init(const hardware_interfa
     for (const auto & interface : joint.state_interfaces)
     {
       std::cout << "\t\t" << interface.name << std::endl;
-      // joint_interfaces[interface.name].push_back(joint.name);
     }
     // 打印命令接口
     std::cout << "\t" << "command interfaces: " << std::endl;
     for (const auto & interface : joint.command_interfaces)
     {
       std::cout << "\t\t" << interface.name << std::endl;
-      // joint_interfaces[interface.name].push_back(joint.name);
     }
   }
 
-  std::cout << "===== 初始化完成 =====" << std::endl;
+  // 打印关节接口
+  for (const auto & joint : hardware_info_.joints)
+  {
+    for (const auto & interface : joint.state_interfaces)
+    {
+      // std::cout << joint.name.c_str() << ":" << interface.name.c_str() << std::endl;
+      joint_interfaces[interface.name].push_back(joint.name);
+    }
+  }
 
+  // 打印位置接口
+  std::cout << "joint_interfaces[\"position\"]";
+  for (const auto & joint : joint_interfaces["position"])
+  {
+    std::cout << joint << " ";
+  }
+  std::cout << std::endl;
+
+  // 打印速度接口
+  std::cout << "joint_interfaces[\"velocity\"]";
+  for (const auto & joint : joint_interfaces["velocity"])
+  {
+    std::cout << joint << " ";
+  }
+  std::cout << std::endl;
+
+  std::cout << "===== 初始化完成 =====" << std::endl;
   return CallbackReturn::SUCCESS;
 }
 
