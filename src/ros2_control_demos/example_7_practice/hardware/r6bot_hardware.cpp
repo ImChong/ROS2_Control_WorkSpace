@@ -31,7 +31,7 @@ hardware_interface::CallbackReturn R6BotHardware::on_init(const hardware_interfa
   {
     return CallbackReturn::ERROR;
   }
-  std::cout << "===== 初始化开始 =====" << std::endl;
+  std::cout << "===== 硬件初始化开始 =====" << std::endl;
 
   // 获取硬件信息
   hardware_info_ = info;
@@ -105,7 +105,7 @@ hardware_interface::CallbackReturn R6BotHardware::on_init(const hardware_interfa
   }
   std::cout << std::endl;
 
-  std::cout << "===== 初始化完成 =====" << std::endl;
+  std::cout << "===== 硬件初始化完成 =====" << std::endl;
   return CallbackReturn::SUCCESS;
 }
 
@@ -114,7 +114,7 @@ hardware_interface::CallbackReturn R6BotHardware::on_init(const hardware_interfa
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 std::vector<hardware_interface::StateInterface> R6BotHardware::export_state_interfaces()
 {
-  std::cout << "===== 导出状态接口开始 =====" << std::endl;
+  std::cout << "===== 硬件导出状态接口开始 =====" << std::endl;
   std::vector<hardware_interface::StateInterface> state_interfaces;
 
   // 导出位置接口
@@ -139,7 +139,7 @@ std::vector<hardware_interface::StateInterface> R6BotHardware::export_state_inte
   state_interfaces.emplace_back("tcp_fts_sensor", "torque.y", &ft_states_[4]);
   state_interfaces.emplace_back("tcp_fts_sensor", "torque.z", &ft_states_[5]);
 
-  std::cout << "===== 导出状态接口完成 =====" << std::endl;
+  std::cout << "===== 硬件导出状态接口完成 =====" << std::endl;
   return state_interfaces;
 }
 
@@ -148,7 +148,7 @@ std::vector<hardware_interface::StateInterface> R6BotHardware::export_state_inte
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 std::vector<hardware_interface::CommandInterface> R6BotHardware::export_command_interfaces()
 {
-  std::cout << "===== 导出命令接口开始 =====" << std::endl;
+  std::cout << "===== 硬件导出命令接口开始 =====" << std::endl;
   std::vector<hardware_interface::CommandInterface> command_interfaces;
 
   // 导出位置接口
@@ -173,7 +173,7 @@ std::vector<hardware_interface::CommandInterface> R6BotHardware::export_command_
   command_interfaces.emplace_back("tcp_fts_sensor", "torque.y", &ft_command_[4]);
   command_interfaces.emplace_back("tcp_fts_sensor", "torque.z", &ft_command_[5]);
 
-  std::cout << "===== 导出命令接口完成 =====" << std::endl;
+  std::cout << "===== 硬件导出命令接口完成 =====" << std::endl;
   return command_interfaces;
 }
 
@@ -182,7 +182,7 @@ std::vector<hardware_interface::CommandInterface> R6BotHardware::export_command_
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 hardware_interface::return_type R6BotHardware::read(const rclcpp::Time & time, const rclcpp::Duration & period)
 {
-  std::cout << "===== 读取开始 =====" << std::endl;
+  std::cout << "===== 硬件读取开始 =====" << std::endl;
   std::cout << "time: " << std::fixed << std::setprecision(3) << time.seconds() << std::endl;
   std::cout << "period: " << std::fixed << std::setprecision(3) << period.seconds() << std::endl;
 
@@ -213,7 +213,7 @@ hardware_interface::return_type R6BotHardware::read(const rclcpp::Time & time, c
   std::cout << "ft_states_: ";
   print_vector_double(ft_states_);
 
-  std::cout << "===== 读取完成 =====" << std::endl;
+  std::cout << "===== 硬件读取完成 =====" << std::endl;
   return hardware_interface::return_type::OK;
 }
 
@@ -222,7 +222,7 @@ hardware_interface::return_type R6BotHardware::read(const rclcpp::Time & time, c
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 hardware_interface::return_type R6BotHardware::write(const rclcpp::Time & time, const rclcpp::Duration & period)
 {
-  std::cout << "===== 写入开始 =====" << std::endl;
+  std::cout << "===== 硬件写入开始 =====" << std::endl;
   std::cout << "time: " << std::fixed << std::setprecision(3) << time.seconds() << std::endl;
   std::cout << "period: " << std::fixed << std::setprecision(3) << period.seconds() << std::endl;
 
@@ -233,7 +233,7 @@ hardware_interface::return_type R6BotHardware::write(const rclcpp::Time & time, 
   std::cout << "ft_command_: ";
   print_vector_double(ft_command_);
 
-  std::cout << "===== 写入完成 =====" << std::endl;
+  std::cout << "===== 硬件写入完成 =====" << std::endl;
   return hardware_interface::return_type::OK;
 }
 
