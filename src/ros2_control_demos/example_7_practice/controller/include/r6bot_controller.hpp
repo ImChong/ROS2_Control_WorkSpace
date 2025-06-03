@@ -22,6 +22,21 @@ protected:
   std::vector<std::string> joint_names_;
   std::vector<std::string> command_interface_types_;
   std::vector<std::string> state_interface_types_;
+
+  std::vector<std::reference_wrapper<hardware_interface::LoanedCommandInterface>> joint_position_command_interface_;
+  std::vector<std::reference_wrapper<hardware_interface::LoanedCommandInterface>> joint_velocity_command_interface_;
+  std::vector<std::reference_wrapper<hardware_interface::LoanedStateInterface>> joint_position_state_interface_;
+  std::vector<std::reference_wrapper<hardware_interface::LoanedStateInterface>> joint_velocity_state_interface_;
+
+  std::unordered_map<std::string, std::vector<std::reference_wrapper<hardware_interface::LoanedCommandInterface>> *>
+    command_interface_map_ = {
+      {"position", &joint_position_command_interface_},
+      {"velocity", &joint_velocity_command_interface_}};
+
+  std::unordered_map<std::string, std::vector<std::reference_wrapper<hardware_interface::LoanedStateInterface>> *>
+    state_interface_map_ = {
+      {"position", &joint_position_state_interface_},
+      {"velocity", &joint_velocity_state_interface_}};
 };
 }   // namespace r6bot_controller_namespace
 
