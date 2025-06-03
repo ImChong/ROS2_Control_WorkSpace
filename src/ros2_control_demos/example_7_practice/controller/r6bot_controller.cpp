@@ -1,6 +1,18 @@
 #include "r6bot_controller.hpp"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// helper 函数
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void print_vector_string(const std::vector<std::string> & vec) {
+  std::cout << "[ ";
+  for (const auto & item : vec)
+  {
+    std::cout << item << " ";
+  }
+  std::cout << "]" << std::endl;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 命名空间
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 namespace r6bot_controller_namespace
@@ -15,6 +27,18 @@ R6BotController::R6BotController() : controller_interface::ControllerInterface()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 controller_interface::CallbackReturn R6BotController::on_init() {
   std::cout << "===== 控制器初始化开始 =====" << std::endl;
+
+  // 自动声明
+  joint_names_ = auto_declare<std::vector<std::string>>("joints", joint_names_);
+  command_interface_types_ = auto_declare<std::vector<std::string>>("command_interfaces", command_interface_types_);
+  state_interface_types_ = auto_declare<std::vector<std::string>>("state_interfaces", state_interface_types_);
+
+  std::cout << "joint_names_: ";
+  print_vector_string(joint_names_);
+  std::cout << "command_interface_types_: ";
+  print_vector_string(command_interface_types_);
+  std::cout << "state_interface_types_: ";
+  print_vector_string(state_interface_types_);
 
   std::cout << "===== 控制器初始化完成 =====" << std::endl;
   return controller_interface::CallbackReturn::SUCCESS;

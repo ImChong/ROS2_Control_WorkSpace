@@ -90,20 +90,20 @@ hardware_interface::CallbackReturn R6BotHardware::on_init(const hardware_interfa
   }
 
   // 打印位置接口
-  std::cout << "joint_interfaces[\"position\"]";
+  std::cout << "joint_interfaces[\"position\"] [";
   for (const auto & joint : joint_interfaces["position"])
   {
     std::cout << joint << " ";
   }
-  std::cout << std::endl;
+  std::cout << "]" << std::endl;
 
   // 打印速度接口
-  std::cout << "joint_interfaces[\"velocity\"]";
+  std::cout << "joint_interfaces[\"velocity\"] [";
   for (const auto & joint : joint_interfaces["velocity"])
   {
     std::cout << joint << " ";
   }
-  std::cout << std::endl;
+  std::cout << "]" << std::endl;
 
   std::cout << "===== 硬件初始化完成 =====" << std::endl;
   return CallbackReturn::SUCCESS;
