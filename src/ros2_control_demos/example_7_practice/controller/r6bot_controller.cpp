@@ -169,6 +169,7 @@ controller_interface::return_type R6BotController::update(const rclcpp::Time & t
 controller_interface::CallbackReturn R6BotController::on_deactivate(const rclcpp_lifecycle::State & previous_state) {
   std::cout << "===== 控制器禁用开始 =====" << std::endl;
   (void)previous_state;
+  release_interfaces(); // 释放接口
 
   std::cout << "===== 控制器禁用完成 =====" << std::endl;
   return controller_interface::CallbackReturn::SUCCESS;
