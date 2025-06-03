@@ -10,7 +10,9 @@
     - [1.6.1. view\_r6bot.launch.py 查看 r6bot 机器人 URDF](#161-view_r6botlaunchpy-查看-r6bot-机器人-urdf)
     - [1.6.2. r6bot\_control\_system.launch.py 启动控制器](#162-r6bot_control_systemlaunchpy-启动控制器)
       - [1.6.2.1. 位置控制器配置](#1621-位置控制器配置)
-      - [1.6.2.2. 速度控制器配置](#1622-速度控制器配置)
+      - [1.6.2.2. forward\_position\_controller 交互指令](#1622-forward_position_controller-交互指令)
+      - [1.6.2.3. 速度控制器配置](#1623-速度控制器配置)
+      - [1.6.2.4. forward\_velocity\_controller 交互指令](#1624-forward_velocity_controller-交互指令)
     - [1.6.3. 一键启动](#163-一键启动)
 
 此包的目的是：
@@ -166,13 +168,13 @@ forward_position_controller:
     interface_name: position
 ```
 
-forward_position_controller 机器人交互指令:
+#### 1.6.2.2. forward_position_controller 交互指令
 
 ```bash
 ros2 topic pub --once /forward_position_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
 ```
 
-#### 1.6.2.2. 速度控制器配置
+#### 1.6.2.3. 速度控制器配置
 
 ```yaml
 controller_manager:
@@ -197,7 +199,7 @@ forward_velocity_controller:
     interface_name: velocity
 ```
 
-forward_velocity_controller 机器人交互指令:
+#### 1.6.2.4. forward_velocity_controller 交互指令
 
 ```bash
 ros2 topic pub --once /forward_velocity_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
