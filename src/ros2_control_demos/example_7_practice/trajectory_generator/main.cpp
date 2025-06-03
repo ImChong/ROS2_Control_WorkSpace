@@ -54,6 +54,7 @@ int main(int argc, char* argv[])
   double dt = 1.0 / loop_rate;
 
   // 生成轨迹///////////////////////////////////////////////////////////////////////////////////////////////////////////
+  std::cout << "===== 轨迹生成开始 =====" << std::endl;
   for (int i = 0; i < trajectory_len; i++)
   {
     double t = i;
@@ -92,9 +93,8 @@ int main(int argc, char* argv[])
   }
 
   trajectory_publisher->publish(trajectory_msg);  // 发布轨迹消息
-  RCLCPP_INFO(node->get_logger(), "轨迹生成器已启动");
+  std::cout << "===== 轨迹生成完成 =====" << std::endl;
 
-  rclcpp::spin(node);
-  rclcpp::shutdown();
+  while (rclcpp::ok()){}
   return 0;
 }
