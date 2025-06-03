@@ -150,6 +150,28 @@ std::vector<hardware_interface::CommandInterface> R6BotHardware::export_command_
   std::cout << "===== 导出命令接口开始 =====" << std::endl;
   std::vector<hardware_interface::CommandInterface> command_interfaces;
 
+  // 导出位置接口
+  int ind = 0;
+  for (const auto & joint_name : joint_interfaces["position"])
+  {
+    command_interfaces.emplace_back(joint_name, "position", &joint_position_command_[ind++]);
+  }
+
+  // 导出速度接口
+  ind = 0;
+  for (const auto & joint_name : joint_interfaces["velocity"])
+  {
+    command_interfaces.emplace_back(joint_name, "velocity", &joint_velocities_command_[ind++]);
+  }
+
+  // 导出力矩接口
+  command_interfaces.emplace_back("tcp_fts_sensor", "force.x", &ft_command_[0]);
+  command_interfaces.emplace_back("tcp_fts_sensor", "force.y", &ft_command_[1]);
+  command_interfaces.emplace_back("tcp_fts_sensor", "force.z", &ft_command_[2]);
+  command_interfaces.emplace_back("tcp_fts_sensor", "torque.x", &ft_command_[3]);
+  command_interfaces.emplace_back("tcp_fts_sensor", "torque.y", &ft_command_[4]);
+  command_interfaces.emplace_back("tcp_fts_sensor", "torque.z", &ft_command_[5]);
+
   std::cout << "===== 导出命令接口完成 =====" << std::endl;
   return command_interfaces;
 }
