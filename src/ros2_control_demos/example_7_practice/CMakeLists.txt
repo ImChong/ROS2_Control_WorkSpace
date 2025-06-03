@@ -91,7 +91,7 @@ install(
 )
 install(
   TARGETS generate_trajectory
-  RUNTIME DESTINATION bin
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 install(TARGETS ${PROJECT_NAME}
