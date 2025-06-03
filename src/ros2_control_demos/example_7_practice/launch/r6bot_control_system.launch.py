@@ -87,18 +87,6 @@ def generate_launch_description():
         arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
     )
 
-    robot_velocity_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["forward_velocity_controller", "--controller-manager", "/controller_manager"],
-    )
-
-    robot_position_controller_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["forward_position_controller", "--controller-manager", "/controller_manager"],
-    )
-
     r6bot_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
@@ -112,24 +100,10 @@ def generate_launch_description():
         )
     )
 
-    delay_joint_state_broadcaster_after_robot_velocity_controller_spawner = RegisterEventHandler(
-        event_handler=OnProcessExit(
-            target_action=robot_velocity_controller_spawner,
-            on_exit=[joint_state_broadcaster_spawner],
-        )
-    )
-
-    delay_velocity_controller_after_robot_position_controller_spawner = RegisterEventHandler(
-        event_handler=OnProcessExit(
-            target_action=robot_position_controller_spawner,
-            on_exit=[robot_velocity_controller_spawner],
-        )
-    )
-
-    delay_position_controller_after_r6bot_controller_spawner = RegisterEventHandler(
+    delay_joint_state_broadcaster_after_r6bot_controller_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
             target_action=r6bot_controller_spawner,
-            on_exit=[robot_position_controller_spawner],
+            on_exit=[joint_state_broadcaster_spawner],
         )
     )
 
@@ -140,9 +114,7 @@ def generate_launch_description():
         robot_state_pub_node,
         control_node,
         r6bot_controller_spawner,
-        delay_position_controller_after_r6bot_controller_spawner,
-        delay_velocity_controller_after_robot_position_controller_spawner,
-        delay_joint_state_broadcaster_after_robot_velocity_controller_spawner,
+        delay_joint_state_broadcaster_after_r6bot_controller_spawner,
         delay_rviz_after_joint_state_broadcaster_spawner,
     ]
 

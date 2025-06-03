@@ -1,40 +1,40 @@
 controller_manager:
   ros__parameters:
-    update_rate: 0.5  # Hz
+    update_rate: 1  # Hz
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    forward_position_controller:
-      type: forward_command_controller/ForwardCommandController
+    # forward_position_controller:
+    #   type: forward_command_controller/ForwardCommandController
 
-    forward_velocity_controller:
-      type: forward_command_controller/ForwardCommandController
+    # forward_velocity_controller:
+    #   type: forward_command_controller/ForwardCommandController
 
     r6bot_controller:
       type: r6bot_controller_namespace/R6BotController
 
-forward_position_controller:
-  ros__parameters:
-    joints:
-      - joint_1
-      - joint_2
-      - joint_3
-      - joint_4
-      - joint_5
-      - joint_6
-    interface_name: position
+# forward_position_controller:
+#   ros__parameters:
+#     joints:
+#       - joint_1
+#       - joint_2
+#       - joint_3
+#       - joint_4
+#       - joint_5
+#       - joint_6
+#     interface_name: position
 
-forward_velocity_controller:
-  ros__parameters:
-    joints:
-      - joint_1
-      - joint_2
-      - joint_3
-      - joint_4
-      - joint_5
-      - joint_6
-    interface_name: velocity
+# forward_velocity_controller:
+#   ros__parameters:
+#     joints:
+#       - joint_1
+#       - joint_2
+#       - joint_3
+#       - joint_4
+#       - joint_5
+#       - joint_6
+#     interface_name: velocity
 
 r6bot_controller:
   ros__parameters:
