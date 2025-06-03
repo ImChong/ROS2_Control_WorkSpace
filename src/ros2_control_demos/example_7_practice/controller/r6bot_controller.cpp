@@ -129,6 +129,24 @@ controller_interface::CallbackReturn R6BotController::on_activate(const rclcpp_l
   std::cout << "===== 控制器激活开始 =====" << std::endl;
   (void)previous_state;
 
+  // 清空接口
+  joint_position_command_interface_.clear();
+  joint_velocity_command_interface_.clear();
+  joint_position_state_interface_.clear();
+  joint_velocity_state_interface_.clear();
+
+  // 分配命令接口
+  for (auto & interface : command_interfaces_)
+  {
+    command_interface_map_[interface.get_interface_name()]->push_back(interface);
+  }
+
+  // 分配状态接口
+  for (auto & interface : state_interfaces_)
+  {
+    state_interface_map_[interface.get_interface_name()]->push_back(interface);
+  }
+
   std::cout << "===== 控制器激活完成 =====" << std::endl;
   return controller_interface::CallbackReturn::SUCCESS;
 }
