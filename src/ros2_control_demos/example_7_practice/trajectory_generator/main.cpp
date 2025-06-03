@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
   double dt = 1.0 / loop_rate;
 
   // 生成轨迹///////////////////////////////////////////////////////////////////////////////////////////////////////////
-  std::cout << "===== 轨迹生成开始 =====" << std::endl;
+  RCLCPP_INFO(node->get_logger(), "===== 轨迹生成开始 =====");
   for (int i = 0; i < trajectory_len; i++)
   {
     double t = i;
@@ -63,17 +63,17 @@ int main(int argc, char* argv[])
 
     ik_vel_solver->CartToJnt(joint_positions, twist, joint_velocities);  // 计算关节角速度
 
-    std::cout << "joint_positions: ";
+    RCLCPP_INFO(node->get_logger(), "joint_positions: ");
     for (unsigned int j = 0; j < joint_positions.rows(); ++j) {
-      std::cout << joint_positions(j) << " ";
+      RCLCPP_INFO(node->get_logger(), "%f ", joint_positions(j));
     }
-    std::cout << std::endl;
+    RCLCPP_INFO(node->get_logger(), "\n");
 
-    std::cout << "joint_velocities: ";
+    RCLCPP_INFO(node->get_logger(), "joint_velocities: ");
     for (unsigned int j = 0; j < joint_velocities.rows(); ++j) {
-      std::cout << joint_velocities(j) << " ";
+      RCLCPP_INFO(node->get_logger(), "%f ", joint_velocities(j));
     }
-    std::cout << std::endl;
+    RCLCPP_INFO(node->get_logger(), "\n");
 
     // 填充轨迹消息
     for (unsigned int j = 0; j < joint_positions.rows(); ++j) {
@@ -90,10 +90,11 @@ int main(int argc, char* argv[])
     trajectory_point_msg.time_from_start.sec = i / loop_rate;
     trajectory_point_msg.time_from_start.nanosec = static_cast<int>(1E9 / loop_rate * static_cast<double>(t - loop_rate * (i / loop_rate)));
     trajectory_msg.points.push_back(trajectory_point_msg);
+    RCLCPP_INFO(node->get_logger(), "time_from_start: %d.%d\n", trajectory_point_msg.time_from_start.sec, trajectory_point_msg.time_from_start.nanosec);
   }
 
   trajectory_publisher->publish(trajectory_msg);  // 发布轨迹消息
-  std::cout << "===== 轨迹生成完成 =====" << std::endl;
+  RCLCPP_INFO(node->get_logger(), "===== 轨迹生成完成 =====");
 
   while (rclcpp::ok()){}
   return 0;
