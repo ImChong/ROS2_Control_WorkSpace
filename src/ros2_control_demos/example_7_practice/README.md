@@ -8,7 +8,8 @@
   - [1.4. 编译 r6bot\_control\_system](#14-编译-r6bot_control_system)
   - [1.5. 运行 r6bot\_control\_system](#15-运行-r6bot_control_system)
     - [1.5.1. view\_r6bot.launch.py 查看 r6bot 机器人 URDF](#151-view_r6botlaunchpy-查看-r6bot-机器人-urdf)
-    - [1.5.2. 一键启动](#152-一键启动)
+    - [1.5.2. r6bot\_control\_system.launch.py 启动控制器](#152-r6bot_control_systemlaunchpy-启动控制器)
+    - [1.5.3. 一键启动](#153-一键启动)
 
 此包的目的是：
 
@@ -32,7 +33,7 @@ ros2 pkg create example_7_practice --build-type ament_cmake --dependencies rclcp
     - 机器人描述文件：```r6bot.urdf.xacro```
     - rviz 配置文件：```view_r6bot.rviz```
     - launch 文件：```view_r6bot.launch.py```
-- [ ] 3. 基本硬件接口 - 实现最小功能的硬件接口
+- [x] 3. 基本硬件接口 - 实现最小功能的硬件接口
   - 所需最少文件：
     - 机器人描述文件：```r6bot.urdf.xacro```
     - rviz 配置文件：```view_r6bot.rviz```
@@ -128,7 +129,15 @@ source install/setup.bash
 ros2 launch r6bot_control_system view_r6bot.launch.py
 ```
 
-### 1.5.2. 一键启动
+### 1.5.2. r6bot_control_system.launch.py 启动控制器
+
+```bash
+cd path/to/ros2_ctrl_ws
+source install/setup.bash
+ros2 launch r6bot_control_system r6bot_control_system.launch.py
+```
+
+### 1.5.3. 一键启动
 
 ```bash
 cd path/to/ros2_ctrl_ws
