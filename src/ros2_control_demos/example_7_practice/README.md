@@ -3,13 +3,15 @@
 - [1. example 7 practice (r6bot\_control\_system)](#1-example-7-practice-r6bot_control_system)
   - [1.1. 创建 ros2 包：r6bot\_control\_system](#11-创建-ros2-包r6bot_control_system)
   - [1.2. 推荐的机器人开发顺序](#12-推荐的机器人开发顺序)
-  - [xacro 转 URDF](#xacro-转-urdf)
-  - [1.3. 文件夹结构](#13-文件夹结构)
-  - [1.4. 编译 r6bot\_control\_system](#14-编译-r6bot_control_system)
-  - [1.5. 运行 r6bot\_control\_system](#15-运行-r6bot_control_system)
-    - [1.5.1. view\_r6bot.launch.py 查看 r6bot 机器人 URDF](#151-view_r6botlaunchpy-查看-r6bot-机器人-urdf)
-    - [1.5.2. r6bot\_control\_system.launch.py 启动控制器](#152-r6bot_control_systemlaunchpy-启动控制器)
-    - [1.5.3. 一键启动](#153-一键启动)
+  - [1.3. xacro 转 URDF](#13-xacro-转-urdf)
+  - [1.4. 文件夹结构](#14-文件夹结构)
+  - [1.5. 编译 r6bot\_control\_system](#15-编译-r6bot_control_system)
+  - [1.6. 运行 r6bot\_control\_system](#16-运行-r6bot_control_system)
+    - [1.6.1. view\_r6bot.launch.py 查看 r6bot 机器人 URDF](#161-view_r6botlaunchpy-查看-r6bot-机器人-urdf)
+    - [1.6.2. r6bot\_control\_system.launch.py 启动控制器](#162-r6bot_control_systemlaunchpy-启动控制器)
+      - [1.6.2.1. 位置控制器配置](#1621-位置控制器配置)
+      - [1.6.2.2. 速度控制器配置](#1622-速度控制器配置)
+    - [1.6.3. 一键启动](#163-一键启动)
 
 此包的目的是：
 
@@ -46,7 +48,7 @@ ros2 pkg create example_7_practice --build-type ament_cmake --dependencies rclcp
 - [ ] 5. 轨迹生成 - 创建测试命令或轨迹
 - [ ] 6. 完善和优化 - 迭代改进所有组件
 
-## xacro 转 URDF
+## 1.3. xacro 转 URDF
 
 ```bash
 cd path/to/ros2_ctrl_ws
@@ -54,7 +56,7 @@ source install/setup.bash
 xacro src/ros2_control_demos/example_7_practice/description/urdf/r6bot.urdf.xacro > src/ros2_control_demos/example_7_practice/description/urdf/r6bot.urdf
 ```
 
-## 1.3. 文件夹结构
+## 1.4. 文件夹结构
 
 ```bash
 tree src/ros2_control_demos/example_7_practice/ -L 4
@@ -112,16 +114,16 @@ src/ros2_control_demos/example_7_practice/
     └── main.cpp                     # 轨迹生成器源文件
 ```
 
-## 1.4. 编译 r6bot_control_system
+## 1.5. 编译 r6bot_control_system
 
 ```bash
 cd path/to/ros2_ctrl_ws
 colcon build --packages-select r6bot_control_system
 ```
 
-## 1.5. 运行 r6bot_control_system
+## 1.6. 运行 r6bot_control_system
 
-### 1.5.1. view_r6bot.launch.py 查看 r6bot 机器人 URDF
+### 1.6.1. view_r6bot.launch.py 查看 r6bot 机器人 URDF
 
 ```bash
 cd path/to/ros2_ctrl_ws
@@ -131,7 +133,7 @@ ros2 launch r6bot_control_system view_r6bot.launch.py
 
 通过 joint_state_publisher_gui 可以控制 r6bot 机器人关节角度。
 
-### 1.5.2. r6bot_control_system.launch.py 启动控制器
+### 1.6.2. r6bot_control_system.launch.py 启动控制器
 
 ```bash
 cd path/to/ros2_ctrl_ws
@@ -139,7 +141,7 @@ source install/setup.bash
 ros2 launch r6bot_control_system r6bot_control_system.launch.py
 ```
 
-位置控制器配置:
+#### 1.6.2.1. 位置控制器配置
 
 ```yaml
 controller_manager:
@@ -170,7 +172,7 @@ forward_position_controller 机器人交互指令:
 ros2 topic pub --once /forward_position_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
 ```
 
-速度控制器配置:
+#### 1.6.2.2. 速度控制器配置
 
 ```yaml
 controller_manager:
@@ -201,7 +203,7 @@ forward_velocity_controller 机器人交互指令:
 ros2 topic pub --once /forward_velocity_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
 ```
 
-### 1.5.3. 一键启动
+### 1.6.3. 一键启动
 
 ```bash
 cd path/to/ros2_ctrl_ws
