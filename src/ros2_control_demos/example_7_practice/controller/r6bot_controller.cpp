@@ -59,11 +59,12 @@ controller_interface::CallbackReturn R6BotController::on_configure(const rclcpp_
 // 命令接口配置
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 controller_interface::InterfaceConfiguration R6BotController::command_interface_configuration() const {
-  static int call_count = 0;
+  static int command_interface_config_call_count = 0;
   const auto timestamp = this->get_node()->now().seconds();
 
-  std::cout << "===== [Call #" << ++call_count << " at " << timestamp << "s] 控制器命令接口配置开始 =====" << std::endl;
+  std::cout << "===== [Call #" << ++command_interface_config_call_count << " at " << timestamp << "s] 控制器命令接口配置开始 =====" << std::endl;
 
+  // 配置命令接口
   controller_interface::InterfaceConfiguration conf = {controller_interface::interface_configuration_type::INDIVIDUAL, {}};
 
   // 预留空间
@@ -91,10 +92,34 @@ controller_interface::InterfaceConfiguration R6BotController::command_interface_
 // 状态接口配置
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 controller_interface::InterfaceConfiguration R6BotController::state_interface_configuration() const {
-  std::cout << "===== 控制器状态接口配置开始 =====" << std::endl;
+  static int state_interface_config_call_count = 0;
+  const auto timestamp = this->get_node()->now().seconds();
 
+  std::cout << "===== [Call #" << ++state_interface_config_call_count << " at " << timestamp << "s] 控制器状态接口配置开始 =====" << std::endl;
+
+  // 配置状态接口
+  controller_interface::InterfaceConfiguration conf = {controller_interface::interface_configuration_type::INDIVIDUAL, {}};
+
+  // 预留空间
+  conf.names.reserve(joint_names_.size() * state_interface_types_.size());
+
+  // 遍历关节
+  for (const auto & joint_name : joint_names_) {
+    // 遍历状态接口类型
+    for (const auto & interface_type : state_interface_types_) {
+      conf.names.push_back(joint_name + "/" + interface_type);
+    }
+  }
+
+  // 打印状态接口名称
+  std::string names_str = "";
+  for (const auto & name : conf.names) {
+    if (!names_str.empty()) names_str += ", ";
+    names_str += name;
+  }
+  std::cout << "state interface configuration: " << names_str << std::endl;
   std::cout << "===== 控制器状态接口配置完成 =====" << std::endl;
-  return controller_interface::InterfaceConfiguration();
+  return conf;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
