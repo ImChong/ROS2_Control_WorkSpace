@@ -223,8 +223,8 @@ hardware_interface::return_type R6BotHardware::read(const rclcpp::Time & time, c
 hardware_interface::return_type R6BotHardware::write(const rclcpp::Time & time, const rclcpp::Duration & period)
 {
   std::cout << "===== 写入开始 =====" << std::endl;
-  (void)time;
-  (void)period;
+  std::cout << "time: " << std::fixed << std::setprecision(3) << time.seconds() << std::endl;
+  std::cout << "period: " << std::fixed << std::setprecision(3) << period.seconds() << std::endl;
 
   std::cout << "joint_position_command_: ";
   print_vector_double(joint_position_command_);
