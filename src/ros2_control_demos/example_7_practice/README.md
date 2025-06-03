@@ -9,9 +9,9 @@
   - [1.6. 运行 r6bot\_control\_system](#16-运行-r6bot_control_system)
     - [1.6.1. view\_r6bot.launch.py 查看 r6bot 机器人 URDF](#161-view_r6botlaunchpy-查看-r6bot-机器人-urdf)
     - [1.6.2. r6bot\_control\_system.launch.py 启动控制器](#162-r6bot_control_systemlaunchpy-启动控制器)
-      - [1.6.2.1. 位置控制器配置](#1621-位置控制器配置)
+      - [1.6.2.1. forward\_position\_controller 位置控制器配置](#1621-forward_position_controller-位置控制器配置)
       - [1.6.2.2. forward\_position\_controller 交互指令](#1622-forward_position_controller-交互指令)
-      - [1.6.2.3. 速度控制器配置](#1623-速度控制器配置)
+      - [1.6.2.3. forward\_velocity\_controller 速度控制器配置](#1623-forward_velocity_controller-速度控制器配置)
       - [1.6.2.4. forward\_velocity\_controller 交互指令](#1624-forward_velocity_controller-交互指令)
     - [1.6.3. 一键启动](#163-一键启动)
 
@@ -143,7 +143,7 @@ source install/setup.bash
 ros2 launch r6bot_control_system r6bot_control_system.launch.py
 ```
 
-#### 1.6.2.1. 位置控制器配置
+#### 1.6.2.1. forward_position_controller 位置控制器配置
 
 ```yaml
 controller_manager:
@@ -174,7 +174,7 @@ forward_position_controller:
 ros2 topic pub --once /forward_position_controller/commands std_msgs/msg/Float64MultiArray "data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
 ```
 
-#### 1.6.2.3. 速度控制器配置
+#### 1.6.2.3. forward_velocity_controller 速度控制器配置
 
 ```yaml
 controller_manager:
