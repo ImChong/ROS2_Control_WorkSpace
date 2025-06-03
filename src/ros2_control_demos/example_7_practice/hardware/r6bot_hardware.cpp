@@ -84,7 +84,6 @@ hardware_interface::CallbackReturn R6BotHardware::on_init(const hardware_interfa
   {
     for (const auto & interface : joint.state_interfaces)
     {
-      // std::cout << joint.name.c_str() << ":" << interface.name.c_str() << std::endl;
       joint_interfaces[interface.name].push_back(joint.name);
     }
   }
