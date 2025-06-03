@@ -99,6 +99,12 @@ def generate_launch_description():
         arguments=["forward_position_controller", "--controller-manager", "/controller_manager"],
     )
 
+    r6bot_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["r6bot_controller", "--controller-manager", "/controller_manager"],
+    )
+
     delay_rviz_after_joint_state_broadcaster_spawner = RegisterEventHandler(
         event_handler=OnProcessExit(
             target_action=joint_state_broadcaster_spawner,
@@ -120,13 +126,21 @@ def generate_launch_description():
         )
     )
 
+    delay_position_controller_after_r6bot_controller_spawner = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=r6bot_controller_spawner,
+            on_exit=[robot_position_controller_spawner],
+        )
+    )
+
     ####################################################################################################################
     # 准备启动节点
     ####################################################################################################################
     nodes = [
         robot_state_pub_node,
         control_node,
-        robot_position_controller_spawner,
+        r6bot_controller_spawner,
+        delay_position_controller_after_r6bot_controller_spawner,
         delay_velocity_controller_after_robot_position_controller_spawner,
         delay_joint_state_broadcaster_after_robot_velocity_controller_spawner,
         delay_rviz_after_joint_state_broadcaster_spawner,
