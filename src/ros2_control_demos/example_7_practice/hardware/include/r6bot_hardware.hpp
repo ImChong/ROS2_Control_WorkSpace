@@ -26,15 +26,18 @@ public:
 protected:
   hardware_interface::HardwareInfo hardware_info_;   // 硬件信息
 
+  // 状态
   std::vector<double> joint_position_states_;  // 关节位置状态
   std::vector<double> joint_velocities_states_;  // 关节速度状态
   std::vector<double> ft_states_;  // 力矩传感器状态
 
+  // 命令
   std::vector<double> joint_position_command_;  // 关节位置命令
   std::vector<double> joint_velocities_command_;  // 关节速度命令
   std::vector<double> ft_command_;  // 力矩传感器命令
 
-  std::unordered_map<std::string, std::vector<std::string>> joint_interfaces = {  // 关节接口
+  // 关节接口
+  std::unordered_map<std::string, std::vector<std::string>> joint_interfaces = {
     {"position", {}}, {"velocity", {}}};
 };
 
