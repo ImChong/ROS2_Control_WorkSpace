@@ -33,12 +33,17 @@ controller_interface::CallbackReturn R6BotController::on_init() {
   command_interface_types_ = auto_declare<std::vector<std::string>>("command_interfaces", command_interface_types_);
   state_interface_types_ = auto_declare<std::vector<std::string>>("state_interfaces", state_interface_types_);
 
+  // 打印关节和接口类型
   std::cout << "joint_names_: ";
   print_vector_string(joint_names_);
   std::cout << "command_interface_types_: ";
   print_vector_string(command_interface_types_);
   std::cout << "state_interface_types_: ";
   print_vector_string(state_interface_types_);
+
+  // 初始化位置插值点
+  point_interp_.positions.assign(joint_names_.size(), 0);
+  point_interp_.velocities.assign(joint_names_.size(), 0);
 
   std::cout << "===== 控制器初始化完成 =====" << std::endl;
   return controller_interface::CallbackReturn::SUCCESS;
@@ -50,6 +55,19 @@ controller_interface::CallbackReturn R6BotController::on_init() {
 controller_interface::CallbackReturn R6BotController::on_configure(const rclcpp_lifecycle::State & previous_state) {
   std::cout << "===== 控制器配置开始 =====" << std::endl;
   (void)previous_state;
+
+  // 设置回调函数
+  auto callback =
+    [this](const std::shared_ptr<trajectory_msgs::msg::JointTrajectory> traj_msg) -> void
+  {
+    traj_msg_external_point_ptr_.writeFromNonRT(traj_msg);
+    new_msg_ = true;
+  };
+
+  // 订阅外部轨迹消息
+  joint_command_subscriber_ =
+    get_node()->create_subscription<trajectory_msgs::msg::JointTrajectory>(
+      "~/joint_trajectory", rclcpp::SystemDefaultsQoS(), callback);
 
   std::cout << "===== 控制器配置完成 =====" << std::endl;
   return controller_interface::CallbackReturn::SUCCESS;
