@@ -68,14 +68,14 @@ int main(int argc, char* argv[])
     for (unsigned int j = 0; j < joint_positions.rows(); ++j) {
       RCLCPP_INFO(node->get_logger(), "%f ", joint_positions(j));
     }
-    RCLCPP_INFO(node->get_logger(), "");
+    RCLCPP_INFO(node->get_logger(), " ");
 
     // 打印关节角速度
     RCLCPP_INFO(node->get_logger(), "joint_velocities: ");
     for (unsigned int j = 0; j < joint_velocities.rows(); ++j) {
       RCLCPP_INFO(node->get_logger(), "%f ", joint_velocities(j));
     }
-    RCLCPP_INFO(node->get_logger(), "");
+    RCLCPP_INFO(node->get_logger(), " ");
 
     // 填充轨迹消息
     for (unsigned int j = 0; j < joint_positions.rows(); ++j) {
