@@ -37,7 +37,7 @@ foreach(Dependency IN ITEMS ${TRAJ_GEN_INCLUDE_DEPENDS})
 endforeach()
 
 ## COMPILE #############################################################################################################
-add_executable(generate_trajectory trajectory_generator/main.cpp)
+add_executable(generate_trajectory trajectory_generator/trajectory_generator.cpp)
 
 ament_target_dependencies(
   generate_trajectory PUBLIC

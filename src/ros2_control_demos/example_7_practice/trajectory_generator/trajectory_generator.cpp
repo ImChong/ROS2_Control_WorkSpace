@@ -96,6 +96,6 @@ int main(int argc, char* argv[])
   trajectory_publisher->publish(trajectory_msg);  // 发布轨迹消息
   RCLCPP_INFO(node->get_logger(), "===== 轨迹生成完成 =====");
 
-  while (rclcpp::ok()){}
+  // while (rclcpp::ok()){}
   return 0;
 }
