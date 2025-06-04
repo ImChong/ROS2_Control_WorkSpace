@@ -57,7 +57,7 @@ ros2 pkg create example_7_practice --build-type ament_cmake --dependencies rclcp
     - yaml 文件：```r6bot_controller.yaml```
     - 插件配置文件：```r6bot_control_system_plugins.xml```
     - launch 文件：```r6bot_control_system.launch.py```
-- [ ] 5. 轨迹生成 - 创建测试命令或轨迹
+- [x] 5. 轨迹生成 - 创建测试命令或轨迹
 - [ ] 6. 完善和优化 - 迭代改进所有组件
 
 ## 1.3. xacro 转 URDF
