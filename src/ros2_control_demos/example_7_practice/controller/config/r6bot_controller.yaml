@@ -1,5 +1,7 @@
 controller_manager:
   ros__parameters:
+    lock_memory: true
+    thread_priority: 99
     update_rate: 1  # Hz
 
     joint_state_broadcaster:

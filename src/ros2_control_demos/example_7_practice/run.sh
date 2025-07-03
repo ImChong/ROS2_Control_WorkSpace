@@ -12,7 +12,7 @@ source install/setup.bash
 
 echo "===== 启动 ====="
 # ros2 launch r6bot_control_system r6bot_view_urdf.launch.py
-# ros2 launch r6bot_control_system r6bot_control_system.launch.py
-ros2 launch r6bot_control_system r6bot_generate_trajectory.launch.py
+ros2 launch r6bot_control_system r6bot_control_system.launch.py
+# ros2 launch r6bot_control_system r6bot_generate_trajectory.launch.py
 
 echo "===== 结束 ====="
