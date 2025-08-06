@@ -496,23 +496,7 @@
     <!-- 球形collision代替mesh -->
     <collision>
       <origin
-        xyz="-0.055 0.025 -0.05"
-        rpy="0 0 0" />
-      <geometry>
-        <sphere radius="0.02" />
-      </geometry>
-    </collision>
-    <collision>
-      <origin
-        xyz="-0.055 -0.025 -0.05"
-        rpy="0 0 0" />
-      <geometry>
-        <sphere radius="0.02" />
-      </geometry>
-    </collision>
-    <collision>
-      <origin
-        xyz="0.07 0.04 -0.065"
+        xyz="0.07 0.037 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -520,7 +504,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.07 -0.04 -0.065"
+        xyz="0.07 -0.037 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -528,7 +512,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.125 0.04 -0.065"
+        xyz="0.125 0.037 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -536,7 +520,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.125 -0.04 -0.065"
+        xyz="0.125 -0.037 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -544,7 +528,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.14 0.035 -0.065"
+        xyz="0.14 0.032 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -552,7 +536,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.14 -0.035 -0.065"
+        xyz="0.14 -0.032 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -560,7 +544,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.166 0.025 -0.061"
+        xyz="0.166 0.022 -0.061"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -568,13 +552,60 @@
     </collision>
     <collision>
       <origin
-        xyz="0.166 -0.025 -0.061"
+        xyz="0.166 -0.022 -0.061"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
       </geometry>
     </collision>
-
+    <collision>
+      <origin
+        xyz="-0.055 0.026 -0.065"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin
+        xyz="-0.055 -0.026 -0.065"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin
+        xyz="-0.065607 0.026 -0.060607"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin
+        xyz="-0.065607 -0.026 -0.060607"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin
+        xyz="-0.07 0.026 -0.05"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin
+        xyz="-0.07 -0.026 -0.05"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
   </link>
   <joint
     name="leg_l6_joint"
@@ -924,23 +955,7 @@
     <!-- 球形collision代替mesh -->
     <collision>
       <origin
-        xyz="-0.055 0.025 -0.05"
-        rpy="0 0 0" />
-      <geometry>
-        <sphere radius="0.02" />
-      </geometry>
-    </collision>
-    <collision>
-      <origin
-        xyz="-0.055 -0.025 -0.05"
-        rpy="0 0 0" />
-      <geometry>
-        <sphere radius="0.02" />
-      </geometry>
-    </collision>
-    <collision>
-      <origin
-        xyz="0.07 0.04 -0.065"
+        xyz="0.07 0.037 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -948,7 +963,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.07 -0.04 -0.065"
+        xyz="0.07 -0.037 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -956,7 +971,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.125 0.04 -0.065"
+        xyz="0.125 0.037 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -964,7 +979,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.125 -0.04 -0.065"
+        xyz="0.125 -0.037 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -972,7 +987,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.14 0.035 -0.065"
+        xyz="0.14 0.032 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -980,7 +995,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.14 -0.035 -0.065"
+        xyz="0.14 -0.032 -0.065"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -988,7 +1003,7 @@
     </collision>
     <collision>
       <origin
-        xyz="0.166 0.025 -0.061"
+        xyz="0.166 0.022 -0.061"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
@@ -996,13 +1011,60 @@
     </collision>
     <collision>
       <origin
-        xyz="0.166 -0.025 -0.061"
+        xyz="0.166 -0.022 -0.061"
         rpy="0 0 0" />
       <geometry>
         <sphere radius="0.005" />
       </geometry>
     </collision>
-
+    <collision>
+      <origin
+        xyz="-0.055 0.026 -0.065"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin
+        xyz="-0.055 -0.026 -0.065"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin
+        xyz="-0.065607 0.026 -0.060607"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin
+        xyz="-0.065607 -0.026 -0.060607"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin
+        xyz="-0.07 0.026 -0.05"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
+    <collision>
+      <origin
+        xyz="-0.07 -0.026 -0.05"
+        rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.005" />
+      </geometry>
+    </collision>
   </link>
   <joint
     name="leg_r6_joint"
