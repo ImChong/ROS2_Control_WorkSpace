@@ -17,25 +17,24 @@ from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
 
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.parameter_descriptions import ParameterValue
 
 
 def generate_launch_description():
-    # Get URDF via xacro
+    # Get URDF file directly (not via xacro)
     robot_description_content = Command(
         [
-            PathJoinSubstitution([FindExecutable(name="xacro")]),
+            "cat",
             " ",
             PathJoinSubstitution(
-                [FindPackageShare("ros2_control_demo_example_1_display_urdf"), "urdf", "rrbot.urdf.xacro"]
+                [FindPackageShare("ros2_urdf_viewer"), "urdf", "openloong", "urdf", "openloong_dotFeet.urdf"]
             ),
-            " ",
-            "prefix:=\"\"",
         ]
     )
-    robot_description = {"robot_description": robot_description_content}
+    robot_description = {"robot_description": ParameterValue(robot_description_content, value_type=str)}
 
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare("ros2_control_demo_example_1_display_urdf"), "rviz", "rrbot.rviz"]
+        [FindPackageShare("ros2_urdf_viewer"), "rviz", "openloong.rviz"]
     )
 
     joint_state_publisher_node = Node(

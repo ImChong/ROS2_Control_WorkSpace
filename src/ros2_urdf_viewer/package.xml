@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>ros2_control_demo_example_1_display_urdf</name>
+  <name>ros2_urdf_viewer</name>
   <version>1.0.0</version>
-  <description>Display URDF of RRbot</description>
+  <description>Display URDF of any robot</description>
 
   <maintainer email="denis.stogl@stoglrobotics.de">Dr.-Ing. Denis Štogl</maintainer>
   <maintainer email="bence.magyar.robotics@gmail.com">Bence Magyar</maintainer>

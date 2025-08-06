@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(ros2_control_demo_example_1_display_urdf LANGUAGES CXX)
+project(ros2_urdf_viewer LANGUAGES CXX)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
   add_compile_options(-Wall -Wextra)
@@ -20,7 +20,7 @@ endforeach()
 # INSTALL
 install(
   DIRECTORY description/launch description/rviz description/urdf
-  DESTINATION share/ros2_control_demo_example_1_display_urdf
+  DESTINATION share/ros2_urdf_viewer
 )
 
 # PACKAGE
