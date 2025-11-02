@@ -5,7 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/src/ros2_control_demos/example_1_hardware/**",
                 "${workspaceFolder}/src/ros2_control_demos/example_7_practice/**",
-                "${workspaceFolder}/install/**",
+                "${workspaceFolder}/src/gazebo_ros2_control/gazebo_ros2_control/include/**",
                 "/opt/ros/humble/**",
                 "/usr/include/gazebo-11",
                 "/opt/ros/humble/include",
